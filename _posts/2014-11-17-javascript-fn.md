@@ -272,7 +272,7 @@ permalink: javascript-fn
     }
 
 
-7、电话、QQ、邮箱的检测
+8、电话、QQ、邮箱的检测
 
     /**
     * @descrition:判断输入的参数是否是个合格的固定电话号码。
@@ -357,7 +357,7 @@ permalink: javascript-fn
     }
 
 
-8、判断是否为合理的IP/URL
+9、判断是否为合理的IP/URL
 
     /**
     * @descrition:判断是否是合理的IP地址
@@ -392,7 +392,7 @@ permalink: javascript-fn
     }
 
 
-9、js判断浏览器类别
+10、js判断浏览器类别
 
     /*
     * @link :http://browserhacks.com
@@ -423,7 +423,7 @@ permalink: javascript-fn
     var isFF = !!window.sidebar;
 
 
-10、滚动文字或图片效果--感觉写的挺简单的收藏了
+11、滚动文字或图片效果--感觉写的挺简单的收藏了
 
     //html 结构
     <div class="tabBox">
@@ -458,7 +458,7 @@ permalink: javascript-fn
     });
 
 
-11、类似书目录的一种布局
+12、类似书目录的一种布局
 
     <!doctype html>
     <html>
@@ -504,7 +504,7 @@ permalink: javascript-fn
     </html>
 
 
-12、jquery cookie 封装
+13、jquery cookie 封装
 
     (function ($) {
         $.xcookie = {
@@ -567,7 +567,7 @@ permalink: javascript-fn
 
 
 
-13、微博腾讯空间分享接口
+14、微博腾讯空间分享接口
 
     /**  微博  **/
     var imgName = '1.jpg'; //开发，传入生成后的图片名称。 
@@ -585,7 +585,7 @@ permalink: javascript-fn
     window.open(fxHref); 
 
 
-14、获取选中的文字
+15、获取选中的文字
 
     //选择文字
     function selectText(){
@@ -597,7 +597,7 @@ permalink: javascript-fn
     }
 
 
-15、jQuery 扩展 tween 算法
+16、jQuery 扩展 tween 算法
 
     $.extend(jQuery.easing , {
         
@@ -729,7 +729,7 @@ permalink: javascript-fn
     });
 
 
-16、javascript原生扩展tween
+17、javascript原生扩展tween
 
     function startMove(obj,json,times,fx,fn){
         
@@ -950,6 +950,6 @@ permalink: javascript-fn
             return Tween['bounceOut'](t*2-d, 0, c, d) * 0.5 + c*0.5 + b;
         }
     }
-    
+
     //调用方式
     startMove(obj,json,times,fx,fn) //fx为tween参数形式
