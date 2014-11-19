@@ -538,7 +538,7 @@ Code snippets
 
 --------------------------------- */
 code, pre {
-  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-family: Menlo, Monaco, "Courier New", monospace,"微软雅黑";
 }
 code {  
   padding: .25em .5em;
@@ -581,7 +581,7 @@ pre {
 
 /* Gist via GitHub Pages */
 .gist .gist-file {
-  font-family: Menlo, Monaco, "Courier New", monospace !important;
+  font-family: Menlo, Monaco, "Courier New", monospace, "微软雅黑" !important;
   margin: 1em 0;
 }
 .gist .markdown-body {
