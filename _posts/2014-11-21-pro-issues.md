@@ -49,7 +49,8 @@ permalink: pro-issues
 
 
 附上驴妈妈日历效果，有兴趣的可以到网站上去取，前辈们写的很好，功能已经比较全面了。
-[![](http://coolnuanfeng.io/assets/images/calendar.png)]
+
+[![](http://coolnuanfeng.github.io/assets/images/calendar.png)]
 
     calendar(); 
     //定义一个封装函数，在每次创建时调用一下
