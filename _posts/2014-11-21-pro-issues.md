@@ -50,7 +50,7 @@ permalink: pro-issues
 
 附上驴妈妈日历效果，有兴趣的可以到网站上去取，前辈们写的很好，功能已经比较全面了。
 
-[![](http://coolnuanfeng.github.io/assets/images/calendar.png)]
+![](http://coolnuanfeng.github.io/assets/images/calendar.png)
 
     calendar(); 
     //定义一个封装函数，在每次创建时调用一下
@@ -175,26 +175,172 @@ permalink: pro-issues
     window.onhashchange = function(){
         var hash = window.location.hash.substring(1);
         $('.writeTitle span').each(function(){
-            if( $(this).attr('data-md') == hash ){
-                var T = $(this).offset().top - $('.tl_topNavBox').height();
+            if( $(this).attr('data-name') == hash ){
+                var T = $(this).offset().top 
                 $('html,body').animate({
-                    scrollTop : T
+                    scrollTop : T-140
                 },'fast')
             }
         });
     };
-    //页面刷新或带有描点的链接时，可直接描点到该处
-    $('.writeTitle span').each(function(){
-        if( $(this).attr('data-md') == hash ){
-            var T = $(this).offset().top - $('.tl_topNavBox').height();
-            $('html,body').animate({
-                scrollTop : T
-            },'fast')
+    $('.treeBox dl dd a').click(function(ev){
+        var id = $(this).parent().attr('id');
+        $('.t_point').each(function(){              
+            if($(this).attr('data-md')==id){
+                if($('.tl_topHead').css('display') == 'block'){
+                    var T = $(this).offset().top - $('.tl_topNavBox').outerHeight()
+                }else{
+                    var T = $(this).offset().top - $('.tl_topNavBox').outerHeight()-60
+                }                   
+                $('html,body').animate({
+                    scrollTop : T
+                },'fast');
+            }
+        }); 
+        return false; //阻止了hash..
+    })
+    //页面刷新或描点链接可以直接连到该处
+    if( window.location.hash.substring(1)=='commit'){
+        if($('.tl_topHead').css('display') == 'block'){
+            var T = $('.publishCommit').offset().top - $('.tl_topNavBox').outerHeight()
+        }else{
+            var T = $('.publishCommit').offset().top - $('.tl_topNavBox').outerHeight()-60
         }
-    });
+        $('html,body').animate({
+            scrollTop : T
+        },'fast')
+    }
 
 ####7、查看页面的图片预览自适应效果
 > 其实也很简单，从服务器那边把图片的宽度取到，前台切换的时候改变宽度就OK了。O(∩_∩)O哈哈~
 
 ####8、最后一个问题就是百度地图与谷歌地图部分
-> 个人感觉地图嘛，国外谷歌，国内搜搜地图比较好，由于公司数据存的是百度的数据（经纬度），无奈只能选择百度地图。感觉百度地图的API写的不是太好。交互效果参考[这里](http://www.baidu.com)。产品经理设计的页面中存在一个页面有多个地图问题，这无疑增大了难度，产品经理嘛，还是那句话，程序员都懂的。。
+> 个人感觉地图嘛，国外谷歌，国内搜搜地图比较好，由于公司数据存的是百度的数据（经纬度），无奈只能选择百度地图。感觉百度地图的API写的不是太好。交互效果参考[这里](http://www.baidu.com)。
+> 
+> 
+
+    //自定义的数据，取自己的数据库
+    var hotelJson = [
+        {poi: 0, longitude: 116.417788, latitude: 39.914444,title:"大观楼",pointUrl:"http://pic.lvmama.com/img/you/icon_none.png",adress:"昆明大观楼，在大观公园，位于滇池北滨，距市中心约6千米.",tel:'010-2545220',descript:'百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。' }, 
+        {poi: 0, longitude: 116.417700, latitude: 39.914444,title:"大观楼2",pointUrl:"http://pic.lvmama.com/img/you/icon_none.png",imgUrl:'http://h.hiphotos.baidu.com/image/w%3D310/sign=f84db396aaec8a13141a51e1c7029157/242dd42a2834349bac5af9fccaea15ce36d3be6f.jpg',adress:"002大观楼，在大观公园，位于滇池北滨，距市中心约6千米.",tel:'010-2545220',descript:'02百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。'},
+        {poi: 0, longitude: 116.330805, latitude: 39.915765,title:"大观楼大观楼大观楼大观楼大观楼大观楼3",pointUrl:"http://pic.lvmama.com/img/you/icon_none.png",imgUrl:'http://h.hiphotos.baidu.com/image/w%3D310/sign=f84db396aaec8a13141a51e1c7029157/242dd42a2834349bac5af9fccaea15ce36d3be6f.jpg',adress:"003大观楼，在大观公园，位于滇池北滨，距市中心约6千米.",tel:'010-2545220',descript:'02百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。'},
+        {poi: 1, longitude: 116.404412, latitude: 39.915599,adress:"北京市海淀区西二旗地铁站附近"}
+    ];
+
+    //同谷歌地图一样解决隐藏元素时地图不加载bug
+    var getPointArry1 =null; 
+    var getPointArry2 = null;
+    $('#hotel_googleMap').click(function(){
+        getPointArry1 = tabMap('googleMap_hotel',$('#googleMap_hotel').attr('data-latitude').split(',')[0],$('#googleMap_hotel').attr('data-latitude').split(',')[1],15,hotelJson);
+    });
+    $('#hotel_googleView').click(function(){
+        getPointArry2 = tabMap('googleMap_view',$('#googleMap_view').attr('data-latitude').split(',')[0],$('#googleMap_view').attr('data-latitude').split(',')[1],15,hotelJson)
+    });
+            
+    function tabMap(id,longitude,latitude,zoomlev,arr){
+        var map = new BMap.Map(id);
+        var point = new BMap.Point(longitude, latitude);
+        map.centerAndZoom(point, zoomlev);
+        var hotelJson = arr;
+        var pointArray = [];
+        pointArray = initInfo(hotelJson,map,pointArray);
+        //==地图事件开始
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+        //==地图事件结束
+        map.setViewport(pointArray); //让所有点在可视区内
+        //====添加控件开始
+        //向地图中添加缩放控件
+        var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+        map.addControl(ctrl_nav);       
+        return pointArray;      
+    } 
+    //构建覆盖点标志层          
+    function initInfo(json,obj,arr){
+        var pointArray = arr;
+        for(var i=0; i<json.length; i++){                
+            //闭包解决一一对应问题
+            (function(a){
+                if(!json[a].poi){
+                    var point = new BMap.Point(json[a].longitude,json[a].latitude);
+                    pointArray.push(point);                       
+                    var marker = new ComplexCustomOverlay(point,a,json[a]/*,searchInfoWindow*/);                        
+                    obj.addOverlay(marker);
+                }else{ //中心点坐标
+                    var pt = new BMap.Point(json[a].longitude,json[a].latitude);
+                    var myIcon = new BMap.Icon("http://developer.baidu.com/map/jsdemo/img/fox.gif", new BMap.Size(300,157));                             
+                    var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '地址：'+json[a].adress+'<br/></div>';                     
+                    var searchInfoWindow = null;
+                    searchInfoWindow = new BMapLib.SearchInfoWindow(obj,content,{
+                        title  : json[a].title,      //标题
+                        width  : 290,             //宽度
+                        //height : 105,              //高度
+                        panel  : "panel",         //检索结果面板
+                        enableAutoPan : true,     //自动平移
+                        searchTypes  :[
+                            //BMAPLIB_TAB_SEARCH,   //周边检索
+                            BMAPLIB_TAB_TO_HERE,  //到这里去
+                            BMAPLIB_TAB_FROM_HERE //从这里出发
+                        ]
+                    }); 
+                    var marker = new BMap.Marker(pt,{icon:myIcon},searchInfoWindow);  // 创建标注
+                    marker.addEventListener("mouseover", function(e){
+                       searchInfoWindow.open(marker);
+                    });
+                    obj.addOverlay(marker); 
+                }
+            })(i);                
+        }
+        return pointArray;           
+    }
+      
+    //复杂的自定义覆盖物的构造函数及方法
+    function ComplexCustomOverlay(point,num,json,objInfo){
+      this._point = point;
+      this._num = num;
+      this._json = json;
+      //this._info = objInfo;
+    }
+    ComplexCustomOverlay.prototype = new BMap.Overlay();
+    ComplexCustomOverlay.prototype.initialize = function(map){          
+          this._map = map;
+          //在此处添加需要的自定义data-属性传参
+          var $div = this._div = $('<a href="'+this._json.pointUrl+'" class="mapOverlay"><span>'+(this._num+1)+'</span><em>'+this._json.title+'</em></a>');      
+          $div.mouseover(function(){               
+                $('.mapOverlay').removeClass('active');
+                $(this).addClass('active');
+                $(this).parents('.city_view_mapBox').find('.mapList dl').removeClass('active');
+                $(this).parents('.city_view_mapBox').find('.mapList .boxPadd dl').eq($(this).index()).addClass('active');
+          });
+          $div.mouseout(function(){
+                $('.mapOverlay').removeClass('active');
+                $(this).parents('.city_view_mapBox').find('.mapList dl').removeClass('active');
+          });
+          map.getPanes().floatShadow.appendChild($div[0]);
+          return $div[0];
+    }
+    ComplexCustomOverlay.prototype.draw = function(){
+      var map = this._map;
+      var pixel = map.pointToOverlayPixel(this._point);
+      this._div.attr('data-top',pixel.y - 5);//存下其位置
+      this._div.css({
+        left: pixel.x - 5,
+        top: pixel.y - 10
+      });
+    }        
+    //地图左侧关联右侧覆盖物               
+    $('.boxPadd dl').mouseenter(function(){
+        $('.boxPadd dl').removeClass('active');
+        $(this).addClass('active');
+        var $obj = $(this).parents('.mapList').next().find('.mapOverlay');
+        $obj.removeClass('active');
+        $obj.eq($(this).index()).addClass('active');
+        var T = $obj.eq($(this).index()).attr('data-top');
+        $obj.eq($(this).index()).animate({top: T-20},100,function(){$(this).animate({top:T}, 50)})
+    }).mouseleave(function(){
+        $('.boxPadd dl').removeClass('active');
+        var $obj = $(this).parents('.mapList').next().find('.mapOverlay');
+        $obj.removeClass('active');
+    });
+
