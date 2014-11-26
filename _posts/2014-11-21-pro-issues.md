@@ -158,9 +158,7 @@ permalink: pro-issues
 > - 左侧div上的滚动监听事件
 > 这里用到了一个插件mousewheel.js，使用比较简单，该插件很好的解决了两个问题：a、就是下方的小按钮的点亮与禁用效果。b、阻止了浏览器的一些默认事件，如：在该div上滚动，右侧的也随之滚动
 > - 左侧锚点与右侧关联定位问题
-> 我是通过检测hash值的变换来做的，并且页面刷新时也能很好的定位上去。只需要让对应的元素的属性值（data-md="m1"）与 hash值一一对应就好。当然这个项目比较坑的地方时顶部滚动时的浮动定位跟随部分，由于高度不一致，会造成scrollTop的改变，所以要注意调整scrollTop的值。参考下面代码的描点定位部分。
-> - 左侧描点 点击多次时，页面会出现抖动情况
-> 这个问题困扰了我一会，找不到原因，知道是顶部的浮动滚动跟随高度变化导致导致scrollTop不精确，调了好半天，总算调好了，也没太搞懂到底怎么回事，但还是会闪一下，加了个 return false， 就好了，看来有些莫名奇妙的BUG，不妨尝试下 return false。O(∩_∩)O哈哈~
+> 我一开始是通过检测hash值的变换来做的，只需要让对应的元素的属性值（data-md="m1"）与 hash值一一对应就好。在编辑页面时可以完成效果，可到了查看页，由于要实现对跳转链接进来的描点进行定位，并且顶部存在浮动的定位，这样只能用描点定位并让其产生偏移通过给a标签添加position：relative； top：-（偏移量）来实现。
 
 
     //重新计算滚动高度 
@@ -172,44 +170,30 @@ permalink: pro-issues
         }); 
     }
     //锚点定位
-    window.onhashchange = function(){
+    window.onhashchange = function(){    
         var hash = window.location.hash.substring(1);
         $('.writeTitle span').each(function(){
-            if( $(this).attr('data-name') == hash ){
-                var T = $(this).offset().top 
+            if( $(this).attr('data-name') == hash ){               
+                var T = $(this).offset().top;
                 $('html,body').animate({
-                    scrollTop : T-140
-                },'fast')
+                    scrollTop : T -140   //此处140是随便取的让填写部分在屏幕中上部
+                },'fast')              
             }
         });
-    };
-    $('.treeBox dl dd a').click(function(ev){
-        var id = $(this).parent().attr('id');
-        $('.t_point').each(function(){              
-            if($(this).attr('data-md')==id){
-                if($('.tl_topHead').css('display') == 'block'){
-                    var T = $(this).offset().top - $('.tl_topNavBox').outerHeight()
-                }else{
-                    var T = $(this).offset().top - $('.tl_topNavBox').outerHeight()-60
-                }                   
-                $('html,body').animate({
-                    scrollTop : T
-                },'fast');
-            }
-        }); 
-        return false; //阻止了hash..
-    })
-    //页面刷新或描点链接可以直接连到该处
-    if( window.location.hash.substring(1)=='commit'){
-        if($('.tl_topHead').css('display') == 'block'){
-            var T = $('.publishCommit').offset().top - $('.tl_topNavBox').outerHeight()
-        }else{
-            var T = $('.publishCommit').offset().top - $('.tl_topNavBox').outerHeight()-60
-        }
-        $('html,body').animate({
-            scrollTop : T
-        },'fast')
     }
+    $('.treeBox dl dd a').live("click",function(ev){ 
+        var id = $(this).parent().attr('id'); 
+        $('.writeTitle span').each(function(){ 
+            if($(this).attr('data-name')==id){ 
+                var T = $(this).offset().top 
+                $('html,body').animate({ 
+                    scrollTop : T-140 
+                },'fast')
+            } 
+        }); 
+        return false; ///同时屏蔽了hash值 
+    })
+    
 
 ####7、查看页面的图片预览自适应效果
 > 其实也很简单，从服务器那边把图片的宽度取到，前台切换的时候改变宽度就OK了。O(∩_∩)O哈哈~
