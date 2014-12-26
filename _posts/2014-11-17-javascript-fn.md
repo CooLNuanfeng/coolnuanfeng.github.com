@@ -2,6 +2,7 @@
 layout: post
 title:  "一些常用的javascript方法总汇"
 date:   2014-11-18
+keywords: 一些常用的javascript方法总汇
 description:  一些常用的javascript方法总汇
 categories:
 - blog
