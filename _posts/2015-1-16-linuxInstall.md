@@ -75,7 +75,7 @@ PHP服务的相关配置扩展：
 ####安装mongoDB
 
  1. sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
- 2. echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+ 2. echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' \| sudo tee /etc/apt/sources.list.d/mongodb.list
  3. sudo apt-get update
  4. sudo apt-get install mongodb
  5. sudo service mongodb restart
