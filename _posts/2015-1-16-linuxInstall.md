@@ -59,9 +59,9 @@ PHP服务的相关配置扩展：
  1. sudo apt-get install openssh-server   //openssh
  2. sudo apt-get install vsftpd         //openFtp
  3.  root登陆修改配置 vim /etc/vsftpd.conf
-    - 修改为anonymous_enable=YES
-    - 解开注释 write_enable=YES
-    - 解开注释 ftp_banner=welcome to blah FTP service
+     - 修改为anonymous_enable=YES
+     - 解开注释 write_enable=YES
+     - 解开注释 ftp_banner=welcome to blah FTP service
  4. root下执行 service vsftpd restart  
 
 ####安装ruby和依赖ruby的sass
