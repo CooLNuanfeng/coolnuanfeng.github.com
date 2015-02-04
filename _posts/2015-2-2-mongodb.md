@@ -54,22 +54,21 @@ permalink: mongodb
  7. db.person.renameCollection('newName') 对集合重新命名
  8. db.person.drop() 删除当前集合
  9. db.person.find() 查询当前集合的所有数据
- 10. db.person.distinct("name")  查询去掉后的当前集合中某列的重复数据
- 11. db.person.find({"age":20}) 按条件查找，如：
+ 10. db.person.distinct("name")  查询去掉后的当前集合中某列的重复数据 
+ 11. db.person.find({"name": 正则表达式})  按指定正则查找
+ 12. db.person.find({},{"name":false})  查询person中所有数据，并去掉每条数据中的name信息 （过滤信息）
+ 13. db.person.find().sort({age:1}) 按年龄升序排序查找  -1 表示降序
+ 14. db.person.find({name:'zhangsan',age:21}) 查询name为zhansan age为21的数据相关信息
+ 15. db.person.find().limit(5)  查询前5条信息
+ 16. db.person.find().skip(10) 查询10条以后的数据
+ 17. db.person.find().limit(10).skip(5) 查询 5-10条数据
+ 18. db.person.find({$or:[{age:22},{age:25}]}) or查询 查找age为22或25
+ 19. db.person.find({age:{$gte:25}}).count() 查找age>=25 的结果数据的条数
+ 20. db.person.find({"age":20}) 按条件查找，如：
 
 > db.person,find({"age":{\$gt:22}}) 查找age大于22的记录
 > db.person.find({"age":{\$lt:22}}) 查找age小于22的记录
 > db.person.find({"age":{\$gte:23,\$lte:26}});  23<= age <=26
-
- 12. db.person.find({"name": 正则表达式})  按指定正则查找
- 13. db.person.find({},{"name":false})  查询person中所有数据，并去掉每条数据中的name信息 （过滤信息）
- 14. db.person.find().sort({age:1}) 按年龄升序排序查找  -1 表示降序
- 15. db.person.find({name:'zhangsan',age:21}) 查询name为zhansan age为21的数据相关信息
- 16. db.person.find().limit(5)  查询前5条信息
- 17. db.person.find().skip(10) 查询10条以后的数据
- 18. db.person.find().limit(10).skip(5) 查询 5-10条数据
- 19. db.person.find({$or:[{age:22},{age:25}]}) or查询 查找age为22或25
- 20. db.person.find({age:{$gte:25}}).count() 查找age>=25 的结果数据的条数
 
 ###增删改操作
 
