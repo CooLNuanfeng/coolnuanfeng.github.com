@@ -10,7 +10,7 @@ permalink: underscore
 ---
 
 
-###关于数组和对象通用的处理函数
+####关于数组和对象通用的处理函数
 
  1、_.each 遍历每一个元素
 
@@ -202,7 +202,7 @@ permalink: underscore
     }),'_.sortBy');
 
 
-###数组的操作
+####数组的操作
 
 1、_.first _.last 取出数组的第一个和最后一个
 
@@ -266,7 +266,7 @@ permalink: underscore
     console.log(_.object(arr17,arr18), '_.object');
 
 
-###对象部分
+####对象部分
 
 1、_.keys 将json的keys 提取出组成一个数组
 
@@ -374,7 +374,7 @@ permalink: underscore
     console.log(_.isUndefined(undefined),'_.isUndefined');
 
 
-###补充部分
+####补充部分
 
 1、产生指定范围的随机数
 
