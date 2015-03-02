@@ -951,6 +951,60 @@ permalink: javascript-fn
             return Tween['bounceOut'](t*2-d, 0, c, d) * 0.5 + c*0.5 + b;
         }
     }
-
     //调用方式
     startMove(obj,json,times,fx,fn) //fx为tween参数形式
+
+18、JS解析URL各部分通用方法
+
+    function parseURL(url) {
+        var a =  document.createElement('a');
+        a.href = url;
+        return {
+            source: url,
+            protocol: a.protocol.replace(':',''),
+            host: a.hostname,
+            port: a.port,
+            query: a.search,
+            params: (function(){
+                var ret = {},
+                    seg = a.search.replace(/^\?/,'').split('&'),
+                    len = seg.length, i = 0, s;
+                for (;i<len;i++) {
+                    if (!seg[i]) { continue; }
+                    s = seg[i].split('=');
+                    ret[s[0]] = s[1];
+                }
+                return ret;
+            })(),
+            file: (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])[1],
+            hash: a.hash.replace('#',''),
+            path: a.pathname.replace(/^([^\/])/,'/$1'),
+            relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])[1],
+            segments: a.pathname.replace(/^\//,'').split('/')
+        };
+    }
+    //调用示例
+    var myURL = parseURL('http://abc.com:8080/dir/index.html?id=255&m=hello#top');
+     
+    myURL.file;     // = 'index.html'
+    myURL.hash;     // = 'top'
+    myURL.host;     // = 'abc.com'
+    myURL.query;    // = '?id=255&m=hello'
+    myURL.params;   // = Object = { id: 255, m: hello }
+    myURL.path;     // = '/dir/index.html'
+    myURL.segments; // = Array = ['dir', 'index.html']
+    myURL.port;     // = '8080'
+    myURL.protocol; // = 'http'
+    myURL.source;   // = 'http://abc.com:8080/dir/index.html?id=255&m=hello#top'
+
+15、将arguments转换成数组
+
+    var argArray = Array.prototype.slice.call(arguments);
+
+16、将一个数组附加到另外一个数组
+
+    var array1 = [12 , "foo" , {name "Joe"} , -2458];
+    var array2 = ["Doe" , 555 , 100];
+    Array.prototype.push.apply(array1, array2);
+    console.log(array1);
+    /* array1 will be equal to  [12 , "foo" , {name "Joe"} , -2458 , "Doe" , 555 , 100] */
