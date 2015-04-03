@@ -746,5 +746,6 @@ th {
 }
 tbody tr:nth-child(odd) td,
 tbody tr:nth-child(odd) th {
-  background-color: $base-05;
+  /* background-color: $base-05; */
+  background-color: #f8f8f8;
 }
