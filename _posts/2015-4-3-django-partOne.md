@@ -108,8 +108,8 @@ PS : from mysite.view import hello,home  中的每一个视图函数要与下面
     <title>Document</title>
     </head>
     <body>
-    <h1>{{current_date}}</h1>
-    <p>{{content}}</p>
+    <h1> \{\{ current_date \}\} </h1>
+    <p> \{\{ content \}\} </p>
     </body>
     </html>
     
