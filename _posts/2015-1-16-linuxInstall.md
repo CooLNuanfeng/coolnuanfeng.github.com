@@ -82,3 +82,15 @@ PHP服务的相关配置扩展：
  6. mongo
 
     
+
+####安装 oh my zsh
+
+1. sudo apt-get update
+2. sudo apt-get install zsh
+3. sudo apt-get install git-core
+4. sudo curl -L http://install.ohmyz.sh | sh
+5. sudo chsh -s \`/bin/zsh\` //当前生效，重启后失效
+6. sudo nano /etc/passwd
+
+Find the line that starts with your username, and change /bin/sh to /bin/zsh.
+如 :vagrant:x:1000:1000::/home/vagrant:/bin/zsh
