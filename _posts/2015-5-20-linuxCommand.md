@@ -111,11 +111,11 @@ permalink: linuxCommand
 ####磁盘空间
 
  1. df -h 显示已经挂载的分区列表
- 2. ls -lSr |more 以尺寸大小排列文件和目录 
+ 2. ls -lSr \|more 以尺寸大小排列文件和目录 
  3. du -sh dir1 估算目录 'dir1' 已经使用的磁盘空间' 
- 4. du -sk * | sort -rn 以容量大小为依据依次显示文件和目录的大小 
- 5. rpm -q -a --qf '%10{SIZE}t%{NAME}n' | sort -k1,1n 以大小为依据依次显示已安装的rpm包所使用的空间 (fedora, redhat类系统) 
- 6. dpkg-query -W -f='${Installed-Size;10}t${Package}n' | sort -k1,1n 以大小为依据显示已安装的deb包所使用的空间 (ubuntu, debian类系统)
+ 4. du -sk * \| sort -rn 以容量大小为依据依次显示文件和目录的大小 
+ 5. rpm -q -a --qf '%10{SIZE}t%{NAME}n' \| sort -k1,1n 以大小为依据依次显示已安装的rpm包所使用的空间 (fedora, redhat类系统) 
+ 6. dpkg-query -W -f='${Installed-Size;10}t${Package}n' \| sort -k1,1n 以大小为依据显示已安装的deb包所使用的空间 (ubuntu, debian类系统)
 
 
 ####用户和群组
@@ -138,7 +138,7 @@ permalink: linuxCommand
 ####文件的权限 - 使用 "+" 设置权限，使用 "-" 用于取消
 
  1. ls -lh 显示权限 
- 2. ls /tmp | pr -T5 -W$COLUMNS 将终端划分成5栏显示 
+ 2. ls /tmp \| pr -T5 -W$COLUMNS 将终端划分成5栏显示 
  3. chmod ugo+rwx directory1 设置目录的所有人(u)、群组(g)以及其他人(o)以读（r ）、写(w)和执行(x)的权限 
  4. chmod go-rwx directory1 删除群组(g)与其他人(o)对目录的读写执行权限 
  5. chown user1 file1 改变一个文件的所有人属性 
@@ -215,8 +215,8 @@ permalink: linuxCommand
  21. rpm -V package_name 检查文件尺寸、 许可、类型、所有者、群组、MD5检查以及最后修改时间 
  22. rpm -Va 检查系统中所有已安装的rpm包- 小心使用 
  23. rpm -Vp package.rpm 确认一个rpm包还未安装 
- 24. rpm2cpio package.rpm | cpio --extract --make-directories *bin* 从一个rpm包运行可执行文件 
- 25. rpm -ivh /usr/src/redhat/RPMS/`arch`/package.rpm 从一个rpm源码安装一个构建好的包 
+ 24. rpm2cpio package.rpm \| cpio --extract --make-directories \*bin\* 从一个rpm包运行可执行文件 
+ 25. rpm -ivh /usr/src/redhat/RPMS/\`arch`/package.rpm 从一个rpm源码安装一个构建好的包 
  26. rpmbuild --rebuild package_name.src.rpm 从一个rpm源码构建一个 rpm 包
 
 
@@ -239,7 +239,7 @@ permalink: linuxCommand
  1. dpkg -i package.deb 安装/更新一个 deb 包 
  2. dpkg -r package_name 从系统删除一个 deb 包 
  3. dpkg -l 显示系统中所有已经安装的 deb 包 
- 4. dpkg -l | grep httpd 显示所有名称中包含 "httpd" 字样的deb包 
+ 4. dpkg -l \| grep httpd 显示所有名称中包含 "httpd" 字样的deb包 
  5. dpkg -s package_name 获得已经安装在系统中一个特殊包的信息 
  6. dpkg -L package_name 显示系统中已经安装的一个deb包所提供的文件列表 
  7. dpkg --contents package.deb 显示尚未安装的一个包所提供的文件列表 
@@ -269,9 +269,9 @@ permalink: linuxCommand
 
 ####文本处理
 
- 1. cat file1 file2 ... | command <> file1_in.txt_or_file1_out.txt general syntax for text manipulation using PIPE, STDIN and STDOUT 
- 2. cat file1 | command( sed, grep, awk, grep, etc...) > result.txt 合并一个文件的详细说明文本，并将简介写入一个新文件中 
- 3. cat file1 | command( sed, grep, awk, grep, etc...) >> result.txt 合并一个文件的详细说明文本，并将简介写入一个已有的文件中 
+ 1. cat file1 file2 ... \| command <> file1_in.txt_or_file1_out.txt general syntax for text manipulation using PIPE, STDIN and STDOUT 
+ 2. cat file1 \| command( sed, grep, awk, grep, etc...) > result.txt 合并一个文件的详细说明文本，并将简介写入一个新文件中 
+ 3. cat file1 \| command( sed, grep, awk, grep, etc...) >> result.txt 合并一个文件的详细说明文本，并将简介写入一个已有的文件中 
  4. grep Aug /var/log/messages 在文件 '/var/log/messages'中查找关键词"Aug" 
  5. grep ^Aug /var/log/messages 在文件 '/var/log/messages'中查找以"Aug"开始的词汇 
  6. grep [0-9] /var/log/messages 选择 '/var/log/messages' 文件中所有包含数字的行 
@@ -279,7 +279,7 @@ permalink: linuxCommand
  8. sed 's/stringa1/stringa2/g' example.txt 将example.txt文件中的 "string1" 替换成 "string2" 
  9. sed '/^$/d' example.txt 从example.txt文件中删除所有空白行 
  10. sed '/ *#/d; /^$/d' example.txt 从example.txt文件中删除所有注释和空白行 
- 11. echo 'esempio' | tr '[:lower:]' '[:upper:]' 合并上下单元格内容 
+ 11. echo 'esempio' \| tr '[:lower:]' '[:upper:]' 合并上下单元格内容 
  12. sed -e '1d' result.txt 从文件example.txt 中排除第一行 
  13. sed -n '/stringa1/p' 查看只包含词汇 "string1"的行 
  14. sed -e 's/ *$//' example.txt 删除每一行最后的空白字符 
@@ -288,15 +288,15 @@ permalink: linuxCommand
  17. sed -n '5p;5q' example.txt 查看第5行 
  18. sed -e 's/00*/0/g' example.txt 用单个零替换多个零 
  19. cat -n file1 标示文件的行数 
- 20. cat example.txt | awk 'NR%2==1' 删除example.txt文件中的所有偶数行 
- 21. echo a b c | awk '{print $1}' 查看一行第一栏 
- 22. echo a b c | awk '{print $1,$3}' 查看一行的第一和第三栏 
+ 20. cat example.txt \| awk 'NR%2==1' 删除example.txt文件中的所有偶数行 
+ 21. echo a b c \| awk '{print $1}' 查看一行第一栏 
+ 22. echo a b c \| awk '{print $1,$3}' 查看一行的第一和第三栏 
  23. paste file1 file2 合并两个文件或两栏的内容 
  24. paste -d '+' file1 file2 合并两个文件或两栏的内容，中间用"+"区分 
  25. sort file1 file2 排序两个文件的内容 
- 26. sort file1 file2 | uniq 取出两个文件的并集(重复的行只保留一份) 
- 27. sort file1 file2 | uniq -u 删除交集，留下其他的行 
- 28. sort file1 file2 | uniq -d 取出两个文件的交集(只留下同时存在于两个文件中的文件) 
+ 26. sort file1 file2 \| uniq 取出两个文件的并集(重复的行只保留一份) 
+ 27. sort file1 file2 \| uniq -u 删除交集，留下其他的行 
+ 28. sort file1 file2 \| uniq -d 取出两个文件的交集(只留下同时存在于两个文件中的文件) 
  29. comm -1 file1 file2 比较两个文件的内容只删除 'file1' 所包含的内容 
  30. comm -2 file1 file2 比较两个文件的内容只删除 'file2' 所包含的内容 
  31. comm -3 file1 file2 比较两个文件的内容只删除两个文件共有的部分
@@ -307,7 +307,7 @@ permalink: linuxCommand
  1. dos2unix filedos.txt fileunix.txt 将一个文本文件的格式从MSDOS转换成UNIX 
  2. unix2dos fileunix.txt filedos.txt 将一个文本文件的格式从UNIX转换成MSDOS 
  3. recode ..HTML < page.txt > page.html 将一个文本文件转换成html 
- 4. recode -l | more 显示所有允许的转换格式
+ 4. recode -l \| more 显示所有允许的转换格式
 
 ####文件系统分析
 
@@ -347,14 +347,14 @@ permalink: linuxCommand
  5. rsync -rogpav -e ssh --delete /home ip_address:/tmp 通过SSH通道rsync 
  6. rsync -az -e ssh --delete ip_addr:/home/public /home/local 通过ssh和压缩将一个远程目录同步到本地目录 
  7. rsync -az -e ssh --delete /home/local ip_addr:/home/public 通过ssh和压缩将本地目录同步到远程目录 
- 8. dd bs=1M if=/dev/hda | gzip | ssh user@ip_addr 'dd of=hda.gz' 通过ssh在远程主机上执行一次备份本地磁盘的操作 
+ 8. dd bs=1M if=/dev/hda \| gzip \| ssh user@ip_addr 'dd of=hda.gz' 通过ssh在远程主机上执行一次备份本地磁盘的操作 
  9. dd if=/dev/sda of=/tmp/file1 备份磁盘内容到一个文件 
  10. tar -Puf backup.tar /home/user 执行一次对 '/home/user' 目录的交互式备份操作 
- 11. ( cd /tmp/local/ && tar c . ) | ssh -C user@ip_addr 'cd /home/share/ && tar x -p' 通过ssh在远程目录中复制一个目录内容 
- 12. ( tar c /home ) | ssh -C user@ip_addr 'cd /home/backup-home && tar x -p' 通过ssh在远程目录中复制一个本地目录 
- 13. tar cf - . | (cd /tmp/backup ; tar xf - ) 本地将一个目录复制到另一个地方，保留原有权限及链接 
- 14. find /home/user1 -name '*.txt' | xargs cp -av --target-directory=/home/backup/ --parents 从一个目录查找并复制所有以 '.txt' 结尾的文件到另一个目录 
- 15. find /var/log -name '*.log' | tar cv --files-from=- | bzip2 > log.tar.bz2 查找所有以 '.log' 结尾的文件并做成一个bzip包 
+ 11. ( cd /tmp/local/ && tar c . ) \| ssh -C user@ip_addr 'cd /home/share/ && tar x -p' 通过ssh在远程目录中复制一个目录内容 
+ 12. ( tar c /home ) \| ssh -C user@ip_addr 'cd /home/backup-home && tar x -p' 通过ssh在远程目录中复制一个本地目录 
+ 13. tar cf - . \| (cd /tmp/backup ; tar xf - ) 本地将一个目录复制到另一个地方，保留原有权限及链接 
+ 14. find /home/user1 -name '*.txt' \| xargs cp -av --target-directory=/home/backup/ --parents 从一个目录查找并复制所有以 '.txt' 结尾的文件到另一个目录 
+ 15. find /var/log -name '*.log' \| tar cv --files-from=- \| bzip2 > log.tar.bz2 查找所有以 '.log' 结尾的文件并做成一个bzip包 
  16. dd if=/dev/hda of=/dev/fd0 bs=512 count=1 做一个将 MBR (Master Boot Record)内容复制到软盘的动作 
  17. dd if=/dev/fd0 of=/dev/hda bs=512 count=1 从已经保存到软盘的备份中恢复MBR内容
 
@@ -364,15 +364,15 @@ permalink: linuxCommand
 
  1. cdrecord -v gracetime=2 dev=/dev/cdrom -eject blank=fast -force 清空一个可复写的光盘内容 
  2. mkisofs /dev/cdrom > cd.iso 在磁盘上创建一个光盘的iso镜像文件 
- 3. mkisofs /dev/cdrom | gzip > cd_iso.gz 在磁盘上创建一个压缩了的光盘iso镜像文件 
+ 3. mkisofs /dev/cdrom \| gzip > cd_iso.gz 在磁盘上创建一个压缩了的光盘iso镜像文件 
  4. mkisofs -J -allow-leading-dots -R -V "Label CD" -iso-level 4 -o ./cd.iso data_cd 创建一个目录的iso镜像文件 
  5. cdrecord -v dev=/dev/cdrom cd.iso 刻录一个ISO镜像文件 
- 6. gzip -dc cd_iso.gz | cdrecord dev=/dev/cdrom - 刻录一个压缩了的ISO镜像文件 
+ 6. gzip -dc cd_iso.gz \| cdrecord dev=/dev/cdrom - 刻录一个压缩了的ISO镜像文件 
  7. mount -o loop cd.iso /mnt/iso 挂载一个ISO镜像文件 
  8. cd-paranoia -B 从一个CD光盘转录音轨到 wav 文件中 
  9. cd-paranoia -- "-3" 从一个CD光盘转录音轨到 wav 文件中（参数-3）
  10. cdrecord --scanbus 扫描总线以识别scsi通道 
- 11. dd if=/dev/hdc | md5sum 校验一个设备的md5sum编码，例如一张 CD
+ 11. dd if=/dev/hdc \| md5sum 校验一个设备的md5sum编码，例如一张 CD
 
 
 
