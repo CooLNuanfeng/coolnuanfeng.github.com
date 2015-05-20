@@ -198,7 +198,7 @@ permalink: linuxCommand
  4. rpm -F package.rpm 更新一个确定已经安装的rpm包 
  5. rpm -e package_name.rpm 删除一个rpm包 
  6. rpm -qa 显示系统中所有已经安装的rpm包 
- 7. rpm -qa | grep httpd 显示所有名称中包含 "httpd" 字样的rpm包 
+ 7. rpm -qa \| grep httpd 显示所有名称中包含 "httpd" 字样的rpm包 
  8. rpm -qi package_name 获取一个已安装包的特殊信息 
  9. rpm -qg "System Environment/Daemons" 显示一个组件的rpm包 
  10. rpm -ql package_name 显示一个已经安装的rpm包提供的文件列表 
