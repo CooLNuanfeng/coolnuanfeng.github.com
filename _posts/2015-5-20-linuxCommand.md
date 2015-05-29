@@ -2,6 +2,7 @@
 layout: post
 title:  "常用linux命令"
 date:   2015-5-20
+keywords : 常用linux命令
 description:  常用linux命令
 categories:
 - blog

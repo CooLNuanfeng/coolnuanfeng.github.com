@@ -2,6 +2,7 @@
 layout: post
 title:  "Django笔记第一部分"
 date:   2015-4-3
+keywords : Django
 description:  整理Django的简单使用笔记
 categories:
 - blog
