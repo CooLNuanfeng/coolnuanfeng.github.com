@@ -380,6 +380,24 @@ permalink: underscore
 
     console.log( _.random(0, 100) ); 
 
+2、template渲染模板，附示例代码
 
+    // script 模板脚本部分
+    <script type="text/template" id="tmpl">
+        <li class="full">
+            <article class="dis-ib">
+                <div class="thumb">
+                     <a href="<%= data.url %>"><img src="<%= data.thumb %>" alt="" width="95" height="75"></a>
+                </div>
+            </article>
+        </li>
+    </script>
+    // 渲染模板脚本代码
+    <script>
+        $.each(jsondatas,function(index,item){
+            var $li = _.template($('#tmpl').html())({data:item});
+            $('#ul').prepend($li);
+        });
+    </script>
 
     
