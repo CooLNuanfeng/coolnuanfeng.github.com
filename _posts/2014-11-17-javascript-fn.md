@@ -1008,3 +1008,18 @@ permalink: javascript-fn
     Array.prototype.push.apply(array1, array2);
     console.log(array1);
     /* array1 will be equal to  [12 , "foo" , {name "Joe"} , -2458 , "Doe" , 555 , 100] */
+
+
+17、监听窗口关闭事件
+
+    window.onbeforeunload = onbeforeunload_handler;     
+    window.onunload = onunload_handler;     
+    function onbeforeunload_handler(){     
+        var warning="确认退出?";             
+        return warning;     
+    }     
+         
+    function onunload_handler(){     
+        var warning="谢谢光临";     
+        alert(warning);     
+    }
