@@ -1023,3 +1023,50 @@ permalink: javascript-fn
         var warning="谢谢光临";     
         alert(warning);     
     }
+
+
+18、将serialize序列化的字符串转为json对象
+
+    //html
+    <form id="myform" action="" method="post">
+        姓名<input type="text" name="user" value=""><br>
+        手机<input type="text" name="tel" value=""><br>
+        城市<select name="address">
+            <option value="北京">北京</option>
+            <option value="上海">上海</option>
+        </select><br>
+        性别<input type="radio" name="sex" value="男">男<input type="radio" name="sex" value="女">女<br>
+        爱好<input type="checkbox" name="enjoy" value="听歌">听歌<br><input type="checkbox" name="enjoy" value="电影">电影<br><input type="checkbox" name="enjoy" value="读书">读书<br>
+    </form>
+    //js
+    var str = $('#myform').serialize();
+    //将form表单的内容组装层 json 对象
+    function serializeJson(serializeString){
+        var arr = decodeURI(serializeString).split('&');
+        var sendJson = {};
+        for(var i=0; i<arr.length; i++){
+            var key = arr[i].split('=')[0];
+            var val = arr[i].split('=')[1];
+            if(sendJson[key]){
+                var tmp = sendJson[key];
+                if(tmp instanceof Array){
+                    sendJson[key].push(val);
+                }else{
+                    var innerArr = [];
+                    innerArr.push(tmp);
+                    innerArr.push(val);
+                    sendJson[key] = innerArr;
+                }
+            }else{
+                sendJson[key] = val;
+            }
+        }
+        return sendJson;
+    }
+
+
+
+
+
+
+
