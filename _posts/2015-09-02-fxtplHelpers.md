@@ -90,13 +90,11 @@ permalink: fxtplHelpers
 	<script src="fxtpl.js"></script>
 	<script src="fxtpl.helpers.js"></script>
 	<script type="text/template" id="temp">
-	市场价：<del>{{$Mtprice }}</del> 价格：{{$Price}} 省 {{($Mtprice-$Price)|numberFormat 2}} 
-	<p>{{$text|replaceText '方法','methods'| cut 120 |replaceText '模板','methods'}}</p>
-	<p>{{$date|dateFormat 'YYYY年MM月DD日 hh时mm分ss秒'}}</p>
+	市场价：<del><!--[$Mtprice ]--></del> 价格：<!--[$Price]--> 省 <!--[($Mtprice-$Price)|numberFormat 2]--> 
+	<p><!--[$text|replaceText '方法','methods'| cut 120 |replaceText '模板','methods']--></p>
+	<p><!--[$date|dateFormat 'YYYY年MM月DD日 hh时mm分ss秒']--></p>
 	</script>
 	<script>
-	Fxtpl.config.leftTag = '{{';//定义新的左分隔符
-	Fxtpl.config.rightTag = '}}';//定义新的右分隔符
 	var data = {
 		'Mtprice':52.2578,
 		'Price' : "45.755669",
