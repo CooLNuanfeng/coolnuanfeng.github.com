@@ -11,7 +11,7 @@ permalink: fxtplHelpers
 
 #### 整理下繁星前端模板引擎的扩展方法
 
-极速，简洁，高效，轻量级，直接在html中嵌入模板，更多[详请](https://github.com/koen301/fxtpl)，下面添加几种日常工作中经常遇到的辅助方法。
+ 极速，简洁，高效，轻量级，直接在html中嵌入模板，更多[详请](https://github.com/koen301/fxtpl)，下面添加几种日常工作中经常遇到的辅助方法。
 
 1、截取字符长度，溢出...
 
