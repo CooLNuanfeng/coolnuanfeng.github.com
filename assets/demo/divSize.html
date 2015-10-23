@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		body{height:1500px; background: #f0f0f0;}
+		#box{width:200px; height:200px; margin-top:500px; border:10px solid blue; margin-left:500px; overflow: auto;}
+		#inner{width:800px; height:800px; background:#f98; border:20px solid #036;}
+		table td{padding:10px;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="inner">hello this is a test</div>
+	</div>
+	<table border="1" cellspacing="0" cellpadding="0">
+		<tr>
+			<td>scrollLeft : <span id="scrollLeft"></span></td>
+			<td>scrollTop : <span id="scrollTop"></span></td>
+			<td>scrollWidth : <span id="scrollWidth"></span></td>
+			<td>scrollHeight : <span id="scrollHeight"></span></td>
+		</tr>
+		<tr>
+			<td>offsetTop : <span id="offsetTop"></span></td>
+			<td>offsetLeft : <span id="offsetLeft"></span></td>
+			<td>offsetWidth : <span id="offsetWidth"></span></td>
+			<td>offsetHeight : <span id="offsetHeight"></span></td>
+		</tr>
+		<tr>
+			<td>clientWidth : <span id="clientWidth"></span></td>
+			<td>clientHeight : <span id="clientHeight"></span></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</body>
+<script>
+
+	function $(id){
+		return document.getElementById(id);
+	}
+
+	$('box').onscroll = function(){
+		console.log('a');
+		$('scrollLeft').innerHTML = $('box').scrollLeft;
+		$('scrollTop').innerHTML = $('box').scrollTop;
+		$('scrollWidth').innerHTML = $('inner').scrollWidth;
+		$('scrollHeight').innerHTML = $('inner').scrollHeight;
+		$('clientWidth').innerHTML = $('inner').clientWidth;
+		$('clientHeight').innerHTML = $('inner').clientHeight;
+		$('offsetTop').innerHTML = $('inner').offsetTop;
+		$('offsetLeft').innerHTML = $('inner').offsetLeft;
+		$('offsetWidth').innerHTML = $('inner').offsetWidth;
+		$('offsetHeight').innerHTML = $('inner').offsetHeight;
+	};
+</script>
+</html>
