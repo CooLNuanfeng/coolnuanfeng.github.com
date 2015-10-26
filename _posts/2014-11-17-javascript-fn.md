@@ -1064,7 +1064,16 @@ permalink: javascript-fn
         return sendJson;
     }
 
+19、判断是否为空JSON对象
 
+    function isEmptyObj(json){
+        for(var key in json){
+            if(key){
+                return false;
+            }
+        }
+        return true;
+    }
 
 
 
