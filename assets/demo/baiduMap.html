@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		body{
+			padding: 50px;
+			overflow: hidden;
+		}
+		.listBox{
+			width: 20%;
+			height: 800px;
+			float: left;
+		}
+		.listBox li{
+			list-style: none;
+		}
+		.listBox li.active{
+			color:red;
+		}
+		.mapBox{
+			float: right;
+			width: 80%;
+			height: 800px;
+		}
+		#container{
+			width: 100%;
+			height: 100%;
+		}
+		.markIcon{
+			width: 35px;
+			height: 35px;
+			border-radius: 50%;
+			background:rgba(255,0,0,0.3);
+			color: #fff;
+			display: block;
+			line-height: 35px;
+			text-align: center;
+			cursor: pointer;
+		}
+		.infoWidow{
+			width:300px;
+			height: 150px;
+			background-color:#fff;
+			position:absolute;
+			left: -130px;
+			top: -150px;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+    <div class="listBox">
+		<ul>
+			<li id="list-1">厦门体育中心</li>
+			<li id="list-2">白鹭洲公园</li>
+			<li id="list-3">东方山</li>
+			<li id="list-4">国贸大厦</li>
+		</ul>
+	</div>
+	<div class="mapBox">
+		<div id="container"></div>
+	</div>
+</body>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.3"></script>
+<script src="http://coolnuanfeng.github.io/assets/js/jquery.min.js"></script>
+<script>
+$(function(){
+
+	var myData = [
+		{
+			lat: 118.113956,
+			lng: 24.492114,
+			title: '厦门体育中心',
+			pointId : 1
+		},
+		{
+			lat: 118.095854,
+			lng: 24.479014,
+			title: '白鹭洲公园',
+			pointId : 2
+		},
+		{
+			lat: 118.093204,
+			lng: 24.490609,
+			title: '东方山',
+			pointId : 3
+		},
+		{
+			lat: 118.125295,
+			lng: 24.481287,
+			title: '国贸大厦',
+			pointId : 4
+		}
+	];
+
+    var mp = null;
+
+	//自定义覆盖类
+    // 定义自定义覆盖物的构造函数
+    function SquareOverlay(point,data){
+        this._point = point;
+        this._div = null;
+        this._data = data;
+    }
+
+	SquareOverlay.prototype = new BMap.Overlay();
+
+    // 实现初始化方法
+    SquareOverlay.prototype.initialize = function(map){
+        // 保存map对象实例
+        this._map = map;
+        // 创建div元素，作为自定义覆盖物的容器
+        var div = document.createElement('div');
+		div.style.position = "absolute";
+		div.id = 'point-'+this._data.pointId;
+		this._div = div;
+		div.innerHTML = '<div class="markIcon" data-id="'+this._data.pointId+'">'+this._data.pointId+'</div><div class="infoWidow"><a href="javascript:;">&times;</a></div>';
+
+
+		div.addEventListener('mouseover',function(){
+			var id = $(this).find('.markIcon').attr('data-id');
+			$('.listBox li').removeClass('active');
+			$('#list-'+id).addClass('active');
+		});
+        // 将div添加到覆盖物容器中
+        map.getPanes().markerPane.appendChild(div);
+
+        // 需要将div元素作为方法的返回值，当调用该覆盖物的show、
+        // hide方法，或者对覆盖物进行移除时，API都将操作此元素。
+        return div;
+    }
+
+
+    // 实现绘制方法
+    SquareOverlay.prototype.draw = function(){
+        // 根据地理坐标转换为像素坐标，并设置给容器
+        var point = this._map.pointToOverlayPixel(this._point);
+        if (point) {
+	    	this._div.setAttribute('data-top', point.y-17);
+	        this._div.style.left = point.x - 17 + 'px';
+	        this._div.style.top = point.y -17 + 'px';
+	    }
+    }
+
+
+	SquareOverlay.prototype.remove = function() {
+	  if (this._div) {
+	    this._map.removeOverlay();
+	  }
+	};
+
+
+
+
+    //初始化函数
+	function init(){
+        mp = new BMap.Map("container");
+    	mp.centerAndZoom(new BMap.Point(118.095915,24.487926), 15);
+    	mp.enableScrollWheelZoom();
+        //循环生成自定义覆盖物
+		$.each(myData,function(index,item){
+            var point = new BMap.Point(item.lat,item.lng);
+            console.log('aaa');
+            var myCompOverlay = new SquareOverlay(point,item);
+            mp.addOverlay(myCompOverlay);
+		});
+
+	}
+
+
+    init();
+
+
+
+	$('#container').on('click','.markIcon',function(){
+		console.log('click');
+	});
+	$('#container').on('mouseover','.markIcon',function(){
+		console.log('mouseover');
+	});
+	$('#container').on('click','.infoWidow a',function(){
+		$(this).parent().hide();
+	});
+
+
+	$('.listBox li').on('mouseover',function(){
+		var id = $(this).attr('id').split('-')[1];
+		var t = $('#point-'+id).attr('data-top');
+		$('#point-'+id).stop().animate({
+			top : '-=30'
+		},300,function() {
+            $(this).stop().animate({'top':t});
+        });
+	});
+
+});
+</script>
+</html>
