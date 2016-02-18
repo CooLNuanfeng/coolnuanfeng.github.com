@@ -123,6 +123,12 @@ $(function(){
 		div.innerHTML = '<div class="markIcon" data-id="'+this._data.pointId+'">'+this._data.pointId+'</div><div class="infoWidow"><a href="javascript:;">&times;</a></div>';
 
 
+        div.addEventListener('click',function(){
+			$('.infoWidow').hide();
+			$(this).find('.infoWidow').show();
+		});
+
+
 		div.addEventListener('mouseover',function(){
 			var id = $(this).find('.markIcon').attr('data-id');
 			$('.listBox li').removeClass('active');
