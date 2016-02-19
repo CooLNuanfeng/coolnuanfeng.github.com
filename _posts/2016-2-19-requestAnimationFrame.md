@@ -9,13 +9,12 @@ permalink: requestAnimationFrame
 ---
 
 
-####requestAnimationFrame的使用
 
 以往JS控制的动画大多使用setInterval 或者setTimeout 每隔一段时间刷新元素的位置，来达到动画的效果，但是这种方式并不能准确地控制动画帧率，尽管主流的浏览器（相当一部分的浏览器的显示频率是16.7ms,）对于这两个函数实现的动画都有一定的优化，但是这依然无法弥补它们性能问题。主要原因是因为JavaScript的单线程机制使得其可能在有阻塞的情况下无法精确到毫秒触发。
 
 requestAnimationFrame()方法正是为了满足高性能动画的需求而提供的API，通过setInterval方法控制的动画其调用的间隔由程序员设置，而requestAnimationFrame()无须设置调用间隔， 它自动紧跟浏览器的绘制的帧率。
 
-window.requestAnimationFrame()这个方法是用来在页面重绘之前，通知浏览器调用一个指定的函数，以满足开发者操作动画的需求。**这个方法接受一个函数为参数，该函数会在重绘前调用。该函数只会被传入一个DOMHighResTimeStamp参数，这个参数指示当前被 requestAnimationFrame 序列化的函数队列被触发的时间。**
+window.requestAnimationFrame()这个方法是用来在页面重绘之前，通知浏览器调用一个指定的函数，以满足开发者操作动画的需求。**这个方法接受一个函数为参数，该函数会在重绘前调用。该函数只会被传入一个[DOMHighResTimeStamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp)参数，这个参数指示当前被 requestAnimationFrame 序列化的函数队列被触发的时间。**
 
 **注意**: 如果想得到连贯的逐帧动画，函数中必须重新调用 requestAnimationFrame()。
 
