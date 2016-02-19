@@ -5,8 +5,8 @@ baseurl: http://coolnuanfeng.github.io
 # Site live URL
 #url: http://coolnuanfeng.github.io
 
-# Localhost 
-# url: http://127.0.0.1:4000  
+# Localhost
+# url: http://127.0.0.1:4000
 
 # Harmony theme configuration. Please change accordingly.
 harmony:
@@ -21,27 +21,27 @@ harmony:
     url: http://coolnuanfeng.github.io
 
   # Google Analytics key, leave blank to ignore
-  google_analytics_key: 
+  google_analytics_key:
 
   # Profile links, leave blank to ignore
-  social: 
+  social:
     github: coolnuanfeng
     twitter: coolnuanfeng
     facebook: coolnuanfeng
     gplus: +coolnuanfeng
-    dribble: 
-    pinterest: 
+    dribble:
+    pinterest:
   # Toggle disclaimer in footer
   #show_disclaimer: true
 
-# Conversion / Build settings 
+# Conversion / Build settings
 markdown:    kramdown
-highlighter: pygments # this is how you put pygments config in jekyll 2.0 instead of pygments: true
+highlighter: rouge # this is how you put pygments config in jekyll 2.0 instead of pygments: true
 
 # Permalinks
 permalink:        pretty
 
-exclude: 
+exclude:
   - CNAME
   - Gemfile
   - Rakefile
