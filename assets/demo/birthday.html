@@ -28,7 +28,7 @@ body,html{height:100%; overflow:hidden;}
     <div class="shape">心想事成</div>
     <div class="shape">Happy Birthday</div>
 </div>
-<embed src="13034.swf">
+<audio id="audio" src="13034.mp3">
 </body>
 <script>
     //
@@ -40,12 +40,15 @@ body,html{height:100%; overflow:hidden;}
     ocas.height = canvas.height = window.innerHeight;
     var bigbooms = [];
     var toShowTextBtn = false;
-    setInterval(function(){
-      toShowTextBtn = true;
-    }, 5000);
 
     window.onload = function(){
-      initAnimate()
+      document.addEventListener('touchstart', function(){
+        document.getElementById('audio').play();
+      });
+      initAnimate();
+      setInterval(function(){
+        toShowTextBtn = true;
+      }, 5000);
     }
 
     function initAnimate(){
