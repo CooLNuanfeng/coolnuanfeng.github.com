@@ -107,6 +107,8 @@ zepto中有
 
 #### Q6：圆角使用Animation 做loading动画时，圆角背景溢出
 
+![radius-animation](http://coolnuanfeng.github.io/assets/images/radius-animation.gif)
+
 解决使用一个同等大小的圆角图片做蒙版遮罩
 
 
