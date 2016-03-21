@@ -12,6 +12,7 @@ permalink: mobileIssue
 
 
 
+
 #### Q1: IOS中阻止当页面滚动到顶部或底部时页面整体滚动
 IOS中浏览页面当页面滚动到顶部或底部时继续滚动会将整个页面滑动，阻止这种效果可以使用下面的函数,参数为最外层容器的选择器
 
@@ -100,7 +101,8 @@ zepto中有
 
 解决给该元素添加下面样式
 
-		{background-clip:padding-box;}
+	//
+	{background-clip:padding-box;}
 
 
 #### Q6：圆角使用Animation 做loading动画时，圆角背景溢出
@@ -108,11 +110,12 @@ zepto中有
 解决使用一个同等大小的圆角图片做蒙版遮罩
 
 
-		{
-			background-color: #F9CEAC;
-	        border-radius: 32px 0 0 32px;
-	        -webkit-mask-image: url(./image/btn_mask.png);
-	    }
+	//
+	{
+		background-color: #F9CEAC;
+        border-radius: 32px 0 0 32px;
+        -webkit-mask-image: url(./image/btn_mask.png);
+    }
 
 
 蒙版图片![btn_mask](http://coolnuanfeng.github.io/assets/images/btn_mask.png)
@@ -122,12 +125,12 @@ zepto中有
 解决：可能是对这个三角使用了圆角，去掉 `border-radius` 即可
 
 
-
-	    {
-	        border: 10px solid transparent;
-	        border-left-color: #000;
-	        /*border-radius: 2px;*/
-	    }
+	//
+    {
+        border: 10px solid transparent;
+        border-left-color: #000;
+        /*border-radius: 2px;*/
+    }
 
 
 #### Q8:Android 上使用 svg 作为 background-image 时显示模糊
@@ -135,10 +138,11 @@ zepto中有
 解决：设置 `background-size`
 
 
-	    {
-	        -webkit-background-size: 100%;
-	        background-size: 100%;
-	    }
+	//
+    {
+        -webkit-background-size: 100%;
+        background-size: 100%;
+    }
 
 
 #### Q9: IOS中 `:active` 样式不生效
@@ -163,22 +167,23 @@ Safari 默认禁用了元素的 active 样式，我们通过声明 touchstart �
 
 单行文本截断并末尾出现省略号一般写法是：
 
-	    {
-	        white-space: nowrap;
-	        overflow: hidden;
-	        text-overflow: ellipsis;
-	    }
+	//
+    {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
 多行文版截断并出现省略号的纯CSS方法，其中的 `-webkit-line-clamp: 2` 即用来控制文本超出两行时截断并出现省略号。 在使用中如果出现第三行文字露一点头出来的问题，设置合理的 `line-height` 即可解决
 
-
-	    {
-	        display: -webkit-box;
-	        overflow: hidden;
-	        text-overflow: ellipsis;
-	        -webkit-line-clamp: 2;
-	        -webkit-box-orient: vertical;
-	    }
+	//
+    {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
 
 
 
@@ -273,7 +278,8 @@ Safari 默认禁用了元素的 active 样式，我们通过声明 touchstart �
 解决：检查是否使用了 fadeIn 的 animation，如有则 fill-mode 使用 backwards 模式
 
 
-	    { -webkit-animation: fadeIn 0.5s ease backwards; }
+	//
+	{ -webkit-animation: fadeIn 0.5s ease backwards; }
 
 
 
