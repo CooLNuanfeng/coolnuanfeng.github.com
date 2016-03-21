@@ -10,6 +10,8 @@ permalink: mobileIssue
 
 
 
+
+
 #### Q1: IOS中阻止当页面滚动到顶部或底部时页面整体滚动
 IOS中浏览页面当页面滚动到顶部或底部时继续滚动会将整个页面滑动，阻止这种效果可以使用下面的函数,参数为最外层容器的选择器
 
@@ -98,15 +100,14 @@ zepto中有
 
 解决给该元素添加下面样式
 
-
-	{background-clip: padding-box;}
+	{ background-clip: padding-box;}
 
 
 #### Q6：圆角使用Animation 做loading动画时，圆角背景溢出
 
 解决使用一个同等大小的圆角图片做蒙版遮罩
 
-    {
+	{
         background-color: #F9CEAC;
         border-radius: 32px 0 0 32px;
         -webkit-mask-image: url(./image/btn_mask.png);
