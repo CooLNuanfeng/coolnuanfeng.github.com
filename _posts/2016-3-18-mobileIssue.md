@@ -8,6 +8,8 @@ categories:
 permalink: mobileIssue
 ---
 
+
+
 #### Q1: IOS中阻止当页面滚动到顶部或底部时页面整体滚动
 IOS中浏览页面当页面滚动到顶部或底部时继续滚动会将整个页面滑动，阻止这种效果可以使用下面的函数,参数为最外层容器的选择器
 
@@ -39,27 +41,30 @@ IOS中浏览页面当页面滚动到顶部或底部时继续滚动会将整个�
 
 2. 使用touchend代替tap，并阻止掉默认行为
 
-    $(dom).on('touchend',function(ev){
-        // to doing
-        ev.preventDefault();
-    });
+
+	    $(dom).on('touchend',function(ev){
+	        // to doing
+	        ev.preventDefault();
+	    });
 
 3. 延迟一定时间(300ms+)处理
 
-    $(dom).on('tap',function(){
-       setTimeout(function(){
-           // to doing
-       },320)
-    });
+	    $(dom).on('tap',function(){
+	       setTimeout(function(){
+	           // to doing
+	       },320)
+	    });
 
 #### Q3:获取窗口宽度
 
 获取窗口宽度有以下一些方法（这里假设已经将样式 reset）：
+
 - window.innerWidth
 - document.body.clientWidth
 - document.body.offsetWidth
 
 zepto中有
+
 - \$(window).width()
 - \$(document).width()
 
@@ -93,9 +98,8 @@ zepto中有
 
 解决给该元素添加下面样式
 
-    {
-        background-clip: padding-box;
-    }
+
+	{background-clip: padding-box;}
 
 
 #### Q6：圆角使用Animation 做loading动画时，圆角背景溢出
@@ -107,11 +111,14 @@ zepto中有
         border-radius: 32px 0 0 32px;
         -webkit-mask-image: url(./image/btn_mask.png);
     }
+
+
 蒙版图片![btn_mask](http://coolnuanfeng.github.io/assets/images/btn_mask.png)
 
 #### Q7: CSS 三角在 Android 上显示为方块
 
 解决：可能是对这个三角使用了圆角，去掉 `border-radius` 即可
+
 
 
     {
@@ -124,6 +131,7 @@ zepto中有
 #### Q8:Android 上使用 svg 作为 background-image 时显示模糊
 
 解决：设置 `background-size`
+
 
     {
         -webkit-background-size: 100%;
@@ -161,6 +169,7 @@ Safari 默认禁用了元素的 active 样式，我们通过声明 touchstart �
 
 多行文版截断并出现省略号的纯CSS方法，其中的 `-webkit-line-clamp: 2` 即用来控制文本超出两行时截断并出现省略号。 在使用中如果出现第三行文字露一点头出来的问题，设置合理的 `line-height` 即可解决
 
+
     {
         display: -webkit-box;
         overflow: hidden;
@@ -177,45 +186,45 @@ Safari 默认禁用了元素的 active 样式，我们通过声明 touchstart �
 
 - 单条 border
 
-    .hairlines li{
-        position: relative;
-        border:none;
-    }
-    .hairlines li:after{
-        content: '';
-        position: absolute;
-        left: 0;
-        background: #000;
-        width: 100%;
-        height: 1px;
-        -webkit-transform: scaleY(0.5);
-                transform: scaleY(0.5);
-        -webkit-transform-origin: 0 0;
-                transform-origin: 0 0;
-    }
+	    .hairlines li{
+	        position: relative;
+	        border:none;
+	    }
+	    .hairlines li:after{
+	        content: '';
+	        position: absolute;
+	        left: 0;
+	        background: #000;
+	        width: 100%;
+	        height: 1px;
+	        -webkit-transform: scaleY(0.5);
+	                transform: scaleY(0.5);
+	        -webkit-transform-origin: 0 0;
+	                transform-origin: 0 0;
+	    }
 
 - 四条 border
 
-    .hairlines li{
-        position: relative;
-        margin-bottom: 20px;
-        border:none;
-    }
-    .hairlines li:after{
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        border: 1px solid #000;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        width: 200%;
-        height: 200%;
-        -webkit-transform: scale(0.5);
-        transform: scale(0.5);
-        -webkit-transform-origin: left top;
-        transform-origin: left top;
-    }
+	    .hairlines li{
+	        position: relative;
+	        margin-bottom: 20px;
+	        border:none;
+	    }
+	    .hairlines li:after{
+	        content: '';
+	        position: absolute;
+	        top: 0;
+	        left: 0;
+	        border: 1px solid #000;
+	        -webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	        width: 200%;
+	        height: 200%;
+	        -webkit-transform: scale(0.5);
+	        transform: scale(0.5);
+	        -webkit-transform-origin: left top;
+	        transform-origin: left top;
+	    }
 
 样式使用的时候，也要结合 JS 代码，判断是否 Retina 屏
 
@@ -232,17 +241,17 @@ Safari 默认禁用了元素的 active 样式，我们通过声明 touchstart �
 
 - Android
 
-    ::-webkit-scrollbar{ opacity: 0; }
+		::-webkit-scrollbar{ opacity: 0; }
 
 - Ios
 
-    //html
-    <div class="wrap">
-        <div class="box"></div>
-    </div>
-    //css
-    .wrap{ height: 100px; overflow: hidden; }
-    .box{ width: 100%; height: -webkit-calc(100% + 5px); overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
+	    //html
+	    <div class="wrap">
+	        <div class="box"></div>
+	    </div>
+	    //css
+	    .wrap{ height: 100px; overflow: hidden; }
+	    .box{ width: 100%; height: -webkit-calc(100% + 5px); overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
 
 原理：`.box` 元素的横向滚动条通过其外层元素 `.wrap` 的 `overflow:hide` 来隐藏。 （5px 是 iOS 上滚动条元素的高度）
 
@@ -261,20 +270,24 @@ Safari 默认禁用了元素的 active 样式，我们通过声明 touchstart �
 
 解决：检查是否使用了 fadeIn 的 animation，如有则 fill-mode 使用 backwards 模式
 
+
     { -webkit-animation: fadeIn 0.5s ease backwards; }
 
 #### Q16: 页面上数字自动变成了可以点击的链接
 
-解决：在页面 <head> 里添加
+解决：在页面 `<head>` 里添加
+
 
     <meta name="format-detection" content="telephone=no">
 
 #### Q17:input 在 iOS 中圆角、内阴影去不掉
 解决：
+
     input{ -webkit-appearance: none; border-radius: 0; }
 
 #### Q18:焦点在 input 时，placeholder 没有隐藏
 解决：
+
     input:focus::-webkit-input-placeholder{ opacity: 0;}
 
 #### Q19:input 输入框调出数字输入键盘
