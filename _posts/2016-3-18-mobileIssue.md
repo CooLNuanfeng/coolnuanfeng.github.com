@@ -11,8 +11,6 @@ permalink: mobileIssue
 
 
 
-
-
 #### Q1: IOS中阻止当页面滚动到顶部或底部时页面整体滚动
 IOS中浏览页面当页面滚动到顶部或底部时继续滚动会将整个页面滑动，阻止这种效果可以使用下面的函数,参数为最外层容器的选择器
 
@@ -50,7 +48,9 @@ IOS中浏览页面当页面滚动到顶部或底部时继续滚动会将整个�
 	        ev.preventDefault();
 	    });
 
-3. 延迟一定时间(300ms+)处理
+3. chrome Android 通过设置 viewport 的 user-scalable=no 可以阻止掉页面的300ms的延时
+
+4. 延迟一定时间(300ms+)处理
 
 	    $(dom).on('tap',function(){
 	       setTimeout(function(){
