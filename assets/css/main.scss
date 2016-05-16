@@ -575,6 +575,9 @@ pre {
   margin-bottom: 1em;
   margin-top: 1em;
   background: #f4f4f4;
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: auto;
   pre {
     margin-bottom: 0;
   }
