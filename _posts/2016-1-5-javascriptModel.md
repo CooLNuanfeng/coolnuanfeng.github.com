@@ -11,11 +11,12 @@ permalink: javascriptModel
 
 简单整理介绍下javascript中常见的几种设计模式，以node环境测试。
 
-#### 单体/单例模式
+#### 单体(单例)模式
+
 单体模式，在该实例不存在的情况下，可以通过一个方法创建一个类来实现创建类的新实例；如果实例已经存在，它会简单返回该对象的引用
 新建单体模式模块 singModel.js
 
-	var _instance = null;
+	var obj_instance = null;
 
 	function Single(name){
 		this.name = name;
@@ -30,10 +31,10 @@ permalink: javascriptModel
 
 
 	module.exports = function(name){
-		if(!_instance){
-			return _instance = new Single(name);
+		if(!obj_instance){
+			return obj_instance = new Single(name);
 		}else{
-			return _instance;
+			return obj_instance;
 		}
 	};
 
@@ -235,11 +236,12 @@ productA.js和productB.js
 
 如果其中某个实例的方法没有实现，如注释掉下面的代码：
 
-	/*
-	Ibook.prototype.play = function(){
-		console.log('Ibook is playing');
-	};
-	*/
+
+
+		//	Ibook.prototype.play = function(){
+		//		console.log('Ibook is playing');
+		//	};
+
 
 运行 node app.js，结果如下：
 
