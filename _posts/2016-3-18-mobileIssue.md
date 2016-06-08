@@ -313,3 +313,25 @@ Safari 默认禁用了元素的 active 样式，我们通过声明 touchstart �
 ![keyboard_number](http://coolnuanfeng.github.io/assets/images/keyboard_number.png)
 
 需要注意的是，单独使用 type="number" 时候， iOS 上出现并不是九宫格的数字键盘，如果需要九宫格的数字键盘，可选择使用 2、3 的方法。 1、2、3 在 Android 上均可以唤起九宫格的数字键盘
+
+#### Q20: rem单位动态设置fontSize
+
+
+    (function (doc, win) {
+        var _root = doc.documentElement,
+            resizeEvent = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            resizeCallback = function () {
+                var clientWidth = _root.clientWidth,
+                    fontSize = 50;
+                if (!clientWidth) return;
+                if(clientWidth < 750) {
+                    fontSize = 50 * (clientWidth / 375);
+                } else {
+                    fontSize = 50 * (750 / 375);
+                }
+                _root.style.fontSize = fontSize + 'px';
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvent, resizeCallback, false);
+        doc.addEventListener('DOMContentLoaded', resizeCallback, false);
+    })(document, window);
