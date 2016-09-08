@@ -2,6 +2,7 @@
 layout: default
 title: Blog archive
 ---
+
 <div class="page-content wc-container">
   <h1>博客分档 (Blog Archive)</h1>  
   {% for post in site.posts %}
@@ -14,4 +15,3 @@ title: Blog archive
   		{% endif %}
     <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
   {% endfor %}
-</div>
