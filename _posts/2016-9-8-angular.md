@@ -121,18 +121,20 @@ myApp.constant('NAME','blue');
     }]);
 
 
-    #### 指令相关参数中的link 与 compile
-
-    link 可以接受五个参数 scope elem attrs parentCtrl transcludefn ，compile 可接受三个参数 elem attrs, transclude。link函数主要用来对DOM元素绑定事件，监视模型属性变化，并更新DOM，可以多次执行。compile函数主要用来在link函数运行之前进行一些DOM转化，只执行一次且必须返回一个函数即link函数（同一个指令有几个实例存在，compile函数也只会运行一次）
-    compile 不能访问 scope 更多指令详解点击[这里](https://segmentfault.com/a/1190000004956878)， 另外 当 多个指令有共同的方法时，可以通过 contrller 来定义指令公用方法，其他指令可以通过 require，来引入该指令并在link函数中通过第四个参数使用。
 
 
+#### 指令相关参数中的link 与 compile
 
-    更对相关文章列表
+link 可以接受五个参数 scope elem attrs parentCtrl transcludefn ，compile 可接受三个参数 elem attrs, transclude。link函数主要用来对DOM元素绑定事件，监视模型属性变化，并更新DOM，可以多次执行。compile函数主要用来在link函数运行之前进行一些DOM转化，只执行一次且必须返回一个函数即link函数（同一个指令有几个实例存在，compile函数也只会运行一次）
+compile 不能访问 scope 更多指令详解点击[这里](https://segmentfault.com/a/1190000004956878)， 另外 当 多个指令有共同的方法时，可以通过 contrller 来定义指令公用方法，其他指令可以通过 require，来引入该指令并在link函数中通过第四个参数使用。
 
-    - [AngularJS指令开发（1）——参数详解](https://segmentfault.com/a/1190000003937942)
-    - [angular指令中使用ngModelController](http://www.cnblogs.com/liulangmao/p/4110137.html)
-    - [angularJS directive详解](http://my.oschina.net/u/1992917/blog/406421)
+
+
+更对相关文章列表
+
+- [AngularJS指令开发（1）——参数详解](https://segmentfault.com/a/1190000003937942)
+- [angular指令中使用ngModelController](http://www.cnblogs.com/liulangmao/p/4110137.html)
+- [angularJS directive详解](http://my.oschina.net/u/1992917/blog/406421)
 
 
 
