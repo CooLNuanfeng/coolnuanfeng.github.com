@@ -125,9 +125,11 @@ myApp.constant('NAME','blue');
 #### 指令相关参数中的link 与 compile
 
 link 可以接受五个参数 scope elem attrs parentCtrl transcludefn ，compile 可接受三个参数 elem attrs, transclude。link函数主要用来对DOM元素绑定事件，监视模型属性变化，并更新DOM，可以多次执行。compile函数主要用来在link函数运行之前进行一些DOM转化，只执行一次且必须返回一个函数即link函数（同一个指令有几个实例存在，compile函数也只会运行一次）
-compile 不能访问 scope
+compile 不能访问 scope 更多指令详解点击[这里](https://segmentfault.com/a/1190000004956878)
 
-更多指令详解点击[这里](https://segmentfault.com/a/1190000004956878)
+
+
+另外 当 多个指令有共同的方法时，可以通过第四个参数及 自定义指令的 require 参数来实现，更对详情请移步[这里](http://my.oschina.net/u/1992917/blog/406421) 和 [这里](http://www.cnblogs.com/liulangmao/p/4110137.html)
 
 
 
