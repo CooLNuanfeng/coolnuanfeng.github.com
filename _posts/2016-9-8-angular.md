@@ -131,4 +131,58 @@ compile 不能访问 scope
 
 
 
+#### $watch $digest $apply 的区别
+
+个人理解 在异步操作尤其是异步操作的结果需要改变$scope的属性值时，如果使用非angular中提供的服务方法（例如 setTimeout $ajax 为非angular提供的服务方法，angular提供的对应方法为$timeout,$http）时，当改变$scope的属性值时，view中对应的值并不会重新渲染，虽然 $scope的值已经改变了。如果想让view中的值重新渲染，可以在改变后调用 $scope.$digest()方法 或者 使用 $scope.$apply()来执行相应的函数
+
+当$scope中值改变时 $watch可以监听相应的变化，下面列个实例来说明上面的问题：
+
+    angular.module('myApp',[]).controller('myCtroller',['$scope',function($scope){
+        $scope.date = 'date';
+        $scope.time = 'time';
+        $scope.number = 1.23;
+
+        //方法一
+        setTimeout(function(){
+            $scope.date = new Date();
+            $scope.time = new Date();
+            console.log($scope);
+            $scope.$digest();  //触发 scope 改变view
+        },2000);
+
+        //方法二
+        // setTimeout(function(){
+        //     $scope.$apply(function(){
+        //         $scope.date = new Date();
+        //         $scope.time = new Date();
+        //     });
+        //     console.log($scope);
+        // },2000);
+
+
+        $scope.$watch('date',function(newV,oldV){
+            console.log('new: '+newV);
+            console.log('old: '+oldV);
+        });
+
+    }]);
+
+
+如果使用angular 内置的服务 就不需要 $apply 或 $digest 来触发了
+
+    angular.module('myApp',[]).controller('myCtroller',['$scope','$timeout',function($scope,$timeout){
+        $scope.date = 'date';
+        $scope.time = 'time';
+
+        $timeout(function(){
+            $scope.time = new Date();
+            $scope.date = new Date();
+        },2000);
+
+        $scope.$watch('date',function(newV,oldV){
+            console.log('new: '+newV);
+            console.log('old: '+oldV);
+        });
+    }]);
+
 > 我的一些angular实例测试[DEMO](https://github.com/CooLNuanfeng/angular-demos)
