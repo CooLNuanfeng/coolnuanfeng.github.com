@@ -200,4 +200,12 @@ compile 不能访问 scope 更多指令详解点击[这里](https://segmentfault
 自定义组件，详情内容参考[这里](https://github.com/Jocs/jocs.github.io/issues/3)
 
 
+#### uiRouter 插件的使用方法
+
+路由是使用angular开发应用不可或缺的重要部分，详细使用移步[这里](http://www.cnblogs.com/darrenji/p/4981008.html)
+
+- [ui-router API wiki](https://github.com/angular-ui/ui-router/wiki)
+
+
+
 > 我的一些angular实例测试[DEMO](https://github.com/CooLNuanfeng/angular-demos)
