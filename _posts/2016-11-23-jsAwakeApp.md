@@ -13,11 +13,18 @@ JavaScript 唤起(拉起)App 通常有两种方式
 
 - location.href
 - iframe
+- window.open
+
+极少数浏览器可能需要 window.open方式拉起
+
+	var tab = window.open(url,'\_black');
+	setTimeout(function(){tab.close()},0);
+
 
 具体原理可参考这篇[文章](http://coolnuanfeng.github.io/jsbridge)
 
 
-下面主要介绍唤起成功/失败时分别对应的回调处理，代码以iframe为例(貌似也只能是iframe)：
+下面主要介绍唤起成功/失败时分别对应的回调处理：
 
 
 	function openApp(openUrl, callback) {
@@ -42,18 +49,24 @@ JavaScript 唤起(拉起)App 通常有两种方式
 				}
 			}, 20);
 		}
-		var ifr = document.createElement('iframe');
-		ifr.src = openUrl;
-		ifr.style.display = 'none';
+		var u = navigator.userAgent.toLowerCase();
+		var ios = (u.indexOf('ios') > -1 || u.indexOf('iphone') > -1 || u.indexOf('mac') > -1 || u.indexOf('ipad') > -1) ? true : false;
+		if(ios){
+			window.location.href = openUrl;
+		}else{
+			var ifr = document.createElement('iframe');
+			ifr.src = openUrl;
+			ifr.style.display = 'none';
+			document.body.appendChild(ifr);
+			setTimeout(function() {
+				document.body.removeChild(ifr);
+			}, 2000);
+		}
 		if (callback) {
 			checkOpen(function(opened) {
 				callback && callback(opened);
 			});
 		}
-		document.body.appendChild(ifr);
-		setTimeout(function() {
-			document.body.removeChild(ifr);
-		}, 2000);
 	}
 
 
