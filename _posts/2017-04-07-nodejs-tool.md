@@ -2,7 +2,7 @@
 layout: post
 title:  "nodejs 命令行小工具"
 date:   2017-04-07
-description: nodejs 命令行小工具.
+keywords: nodejs 命令行小工具.
 categories:
 - blog
 permalink: nodejs-tool
