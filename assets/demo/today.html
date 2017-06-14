@@ -20,9 +20,9 @@ body,html{height:100%; overflow:hidden;}
 <body>
 <canvas id="cas" style="background-color:rgba(0,5,24,1);">浏览器不支持canvas</canvas>
 <img src="moon.png" width="100%" alt="" id="moon" style="visibility: hidden;">
-<div class="city"><img src="city.png" width="100%" alt=""></div>
+<div class="city"><img src="hk.png" width="100%" alt=""></div>
 <div style="display:none">
-    <div class="shape">祝文文童鞋</div>
+    <div class="shape">祝荣荣童鞋</div>
     <div class="shape">生日快乐</div>
     <div class="shape">天天开心</div>
     <div class="shape">心想事成</div>
@@ -112,7 +112,7 @@ body,html{height:100%; overflow:hidden;}
           })
         }
       });
-      
+
       raf(animate);
     }
 
@@ -137,7 +137,7 @@ body,html{height:100%; overflow:hidden;}
         ctx.fill();
         ctx.restore();
       }
-      
+
     }
 
     Array.prototype.foreach = function(callback){
@@ -147,7 +147,7 @@ body,html{height:100%; overflow:hidden;}
     }
 
     var raf = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) { window.setTimeout(callback, 1000 / 60); };
-    
+
     // canvas.onclick = function(){
     //   var x = event.clientX;
     //   var y = event.clientY;
@@ -231,7 +231,7 @@ body,html{height:100%; overflow:hidden;}
           }
           var a = getRandom(-Math.PI, Math.PI);
           var x = getRandom(0, fanwei) * Math.cos(a) + this.x;
-          var y = getRandom(0, fanwei) * Math.sin(a) + this.y; 
+          var y = getRandom(0, fanwei) * Math.sin(a) + this.y;
           var radius = getRandom(0 , 2)
           var frag = new Frag(this.x , this.y , radius , color , x , y );
           this.booms.push(frag);
@@ -372,6 +372,6 @@ body,html{height:100%; overflow:hidden;}
         this.paint();
       }
     }
-  
+
 </script>
 </html>
