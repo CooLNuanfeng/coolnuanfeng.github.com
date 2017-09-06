@@ -146,6 +146,38 @@ JavaScript语言的设计者意识到，这时主线程完全可以不管IO设�
 	bar
 
 
+#### javascript 预加载顺序
+
+首先都会将所有的声明前置
+
+1、函数的参数，如果有参数直接赋值
+2、函数内部的函数声明，如果有则前置，如果函数名与参数重复则覆盖掉参数
+3、函数内部的变量声明，如果有则前置，如果变量名与 函数声明重复 会忽略该变量声明，只是忽略声明 赋值语句仍有效
+
+注意下面两段代码的执行结果
+
+代码一：
+
+	alert(x) // function
+	var x = 10;
+	alert(x) //10
+	x = 20;
+	function x(){}
+	alert(x) //20
+
+
+代码二：
+
+	!function(x,y){
+	    alert(x); //function
+	    alert(y); //2
+	    var x = 10,y=20;
+	    function x(){}
+	    alert(x); //10
+	    alert(y);  //20
+	}(2,2)
+
+
 
 #### 闭包/作用域 call apply bind
 
