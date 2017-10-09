@@ -130,7 +130,9 @@ commander.js是TJ所写的一个工具包，其作用是让node命令行程序�
 实例DEMO
 --------------------
 
-- [我的有道百度翻译工具](https://github.com/CooLNuanfeng/translator)
+
+- [我的一些小工具](https://www.npmjs.com/~coolnuanfeng)
+- [有道百度翻译工具](https://github.com/CooLNuanfeng/translator)
 - [网易云课堂灌水小工具](http://study.163.com/course/introduction/1003588036.htm#/courseDetail)
 - [nodejs-tools](https://github.com/swxy/nodejs-tools)
 
