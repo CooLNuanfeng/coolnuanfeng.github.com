@@ -30,6 +30,16 @@ permalink: nodejs-tool
 在当前文件的根目录执行 npm link 将 bin 下 的指令添加到全局，这样可以直接在本地调试你的代码，本质是做了两个软连接，最后指向了当前目录，这样就可以全局调用该命令
 
 
+#### Step four
+
+添加注释，编写代码
+
+	#!/usr/bin/env node
+	...code
+
+
+
+
 commander
 ---------------------
 
