@@ -32,17 +32,17 @@ permalink: javascript-fn
 
     function ajax(url, fnOnSucc, fnOnFaild){
         var oAjax=null;
-        
+
         //1.初始化Ajax对象
         if(window.ActiveXObject){
             oAjax=new ActiveXObject("Msxml2.XMLHTTP")||new ActiveXObject("Microsoft.XMLHTTP");
         }else{
             oAjax=new XMLHttpRequest();
         }
-        
+
         //2.建立连接
         oAjax.open('get', url, true);
-        
+
         //3.监控请求状态
         oAjax.onreadystatechange=function (){
             //readyState->Ajax对象内部的状态
@@ -63,28 +63,28 @@ permalink: javascript-fn
             //alert(oAjax.readyState);
             //alert(typeof oAjax.status);
         };
-        
+
         //4.发送请求
         oAjax.send();
-        
+
         //5.*清理
         //oAjax.onreadystatechange=null;
         //oAjax=null;
     }
-     
+
     function ajaxPost(url, sData, fnOnSucc, fnOnFaild){
         var oAjax=null;
-        
+
         //1.初始化Ajax对象
         if(window.ActiveXObject){
             oAjax=new ActiveXObject("Msxml2.XMLHTTP")||new ActiveXObject("Microsoft.XMLHTTP");
         }else{
             oAjax=new XMLHttpRequest();
         }
-        
+
         //2.建立连接
         oAjax.open('post', url, true);
-        
+
         //3.监控请求状态
         oAjax.onreadystatechange=function (){
             //readyState->Ajax对象内部的状态
@@ -105,11 +105,11 @@ permalink: javascript-fn
             //alert(oAjax.readyState);
             //alert(typeof oAjax.status);
         };
-        
+
         //4.发送请求
         oAjax.setRequestHeader('content-type', 'urlencode');
         oAjax.send(sData);
-        
+
     }
 
 
@@ -137,12 +137,12 @@ permalink: javascript-fn
 4、将伪数组转化为数组
 
     /**
-        * 这里把符合以下条件的对象称为伪数组 
-        * 1，具有length属性 
-        * 2，按索引方式存储数据 
-        * 3，不具有数组的push,pop等方法 
+        * 这里把符合以下条件的对象称为伪数组
+        * 1，具有length属性
+        * 2，按索引方式存储数据
+        * 3，不具有数组的push,pop等方法
     **/
-     
+
     //将伪数组转换成数组，ps:已测试IE6-10、chrome、Firefox
     function toArray(arg){
       try {
@@ -180,7 +180,7 @@ permalink: javascript-fn
 
     /**
     * @description : 判断输入的参数是否为空
-    * @return : true表示为输入参数为空 
+    * @return : true表示为输入参数为空
     * */
     function isEmpty (str) {
         //空引用  空字符串  空输入
@@ -197,9 +197,9 @@ permalink: javascript-fn
     **/
     function checkIdCard (num) {
             num = num.toUpperCase();
-     
+
             var cityCode = {11: "北京", 12: "天津", 13: "河北", 14: "山西", 15: "内蒙古", 21: "辽宁", 22: "吉林", 23: "黑龙江 ", 31: "上海", 32: "江苏", 33: "浙江", 34: "安徽", 35: "福建", 36: "江西", 37: "山东", 41: "河南", 42: "湖北 ", 43: "湖南", 44: "广东", 45: "广西", 46: "海南", 50: "重庆", 51: "四川", 52: "贵州", 53: "云南", 54: "西藏 ", 61: "陕西", 62: "甘肃", 63: "青海", 64: "宁夏", 65: "新疆", 71: "台湾", 81: "香港", 82: "澳门", 91: "国外 "};
-     
+
             if(!cityCode[num.substr(0,2)]){
                 alert("地址编码错误");
                 return false;
@@ -216,7 +216,7 @@ permalink: javascript-fn
             if (len == 15) {
                 re = new RegExp(/^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/);
                 var arrSplit = num.match(re);
-     
+
                 //检查生日日期是否正确
                 var dtmBirth = new Date('19' + arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4]);
                 var bGoodDay;
@@ -241,7 +241,7 @@ permalink: javascript-fn
             if (len == 18) {
                 re = new RegExp(/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/);
                 var arrSplit = num.match(re);
-     
+
                 //检查生日日期是否正确
                 var dtmBirth = new Date(arrSplit[2] + "/" + arrSplit[3] + "/" + arrSplit[4]);
                 var bGoodDay;
@@ -284,7 +284,7 @@ permalink: javascript-fn
         /**
          *
          * @desctition:规则->区号3-4位，号码7-8位,可以有分机号，分机号为3-4为，格式如下："0775-85333333-123"
-         * 
+         *
          */
          var pattern =  /^\d{3,4}-\d{7,8}(-\d{3,4})?$/;
          return pattern.test(str);
@@ -294,7 +294,7 @@ permalink: javascript-fn
     * @descrition:判断输入的参数是否是个合格的手机号码，不能判断号码的有效性，有效性可以通过运营商确定。
     * @param:str ->待判断的手机号码
     * @return: true表示合格输入参数
-    * 
+    *
     */
     var isCellphone = function(str) {
         /**
@@ -304,7 +304,7 @@ permalink: javascript-fn
         * 15段：150、151、152、153、155、156、157、158、159
         * 17段：170、176、177、178
         * 18段：180、181、182、183、184、185、186、187、188、189
-        * 
+        *
         */
         var pattern =  /^(13[0-9]|14[57]|15[012356789]|17[0678]|18[0-9])\d{8}$/;
         return pattern.test(str);
@@ -323,22 +323,22 @@ permalink: javascript-fn
             var pattern = /^[1-9][0-9]{4,}$/
             return pattern.test(str);
     }
-     
+
     /**
     *
     * @descrition:判断输入的参数是否是国内合法的邮编地址(ps:国内不包含国外的邮编)
     * @link: http://www.youbianku.com/%E9%A6%96%E9%A1%B5
     * @param: str为待验证的邮编号码
     * @return: true表示为合法的邮编号码
-    * 
+    *
     */
     var isPostcode = function(str) {
             //国内邮编以0-8开头的6为数字
             var pattern = /^[0-8]\d{5}$/;
             return pattern.test(str);
-            
+
     }
-    
+
     /**
     * @descrition:判断输入的参数是否是个合格标准的邮箱,并不能判断是否有效，有效只能通过邮箱提供商确定。
     * @param:str ->待验证的参数。
@@ -367,10 +367,10 @@ permalink: javascript-fn
     **/
     var isIP = function (str) {
       var pattern = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-     
+
       return pattern.test(str);
     }
-     
+
     /**
     * @descrition:判断输入的参数是否是个合格的URL,由于url的灵活性和多样性，一下代码并不能测试所有的url都是合法的
     * @param:str->待判断的url参数
@@ -388,7 +388,7 @@ permalink: javascript-fn
                 + "((/?)|"
                 + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
         var re = new RegExp(strRegex);
-     
+
         return re.test(str);
     }
 
@@ -410,7 +410,7 @@ permalink: javascript-fn
         );
         return v > 4 ? v : false ;
     }());
-     
+
     /*
     * @link :http://browserhacks.com/
     * chrome篇
@@ -439,7 +439,7 @@ permalink: javascript-fn
             <li><span class="firstSpan">第八周幸运用户</span><span>18601583176</span><span>巴西世界杯之旅6日游</span></li>
         </ul>
     </div>
-     
+
     //js代码
     $(function(){
         var _listName = $('.visiter');
@@ -455,7 +455,7 @@ permalink: javascript-fn
                 $(this).remove();
             });
         }
-     
+
     });
 
 
@@ -477,7 +477,7 @@ permalink: javascript-fn
     .list li span{border-bottom:1px dashed #000;height:10px;line-height:10px;display:block; overflow:hidden;}
     </style>
     </head>
-     
+
     <body>
     <ul class="list">
         <li class="clearfix">
@@ -523,7 +523,7 @@ permalink: javascript-fn
                         date = options.expires;
                     }
                     expires = '; expires=' + date.toUTCString();
-                    
+
                 }
                 document.cookie = [name, '=', encodeURIComponent(value), expires, path, domain, secure].join('');
             },
@@ -554,15 +554,15 @@ permalink: javascript-fn
             }
         }
     })(jQuery);
-     
-     
+
+
     //使用方法
     // 1、设置
     $.xcookie.setCookie('gemeOld', ‘cookie值’, { path: '/',expires:1000});//expires是天数
-     
+
     //2、获取
     $.xcookie.getCookie('gemeOld')
-     
+
     //3、删除
     $.xcookie.deleteCookie('gemeOld',{path : '/'})
 
@@ -571,19 +571,19 @@ permalink: javascript-fn
 14、微博腾讯空间分享接口
 
     /**  微博  **/
-    var imgName = '1.jpg'; //开发，传入生成后的图片名称。 
-    var title = '分享文字'; //定义分享文字内容，等待 
-    var url = 'http://www.lvmama.com/zt/promo/ztname/'; //要分享的页面链接 
-    var img = url+'imgnew/'+imgName; //分享的图片路径 
-    var fxHref = 'http://service.weibo.com/share/share.php?title='+ title +'&url='+ url +'&source=bookmark&appkey=2992571369&pic='+ img +'&ralateUid=&sudaref=s.jiathis.com'; 
+    var imgName = '1.jpg'; //开发，传入生成后的图片名称。
+    var title = '分享文字'; //定义分享文字内容，等待
+    var url = 'http://www.lvmama.com/zt/promo/ztname/'; //要分享的页面链接
+    var img = url+'imgnew/'+imgName; //分享的图片路径
+    var fxHref = 'http://service.weibo.com/share/share.php?title='+ title +'&url='+ url +'&source=bookmark&appkey=2992571369&pic='+ img +'&ralateUid=&sudaref=s.jiathis.com';
     window.open(fxHref);
     //window.location.href=fxHref
     /** QQ分享 项目中发现QQ分享必须在有ip地址的服务器上才有效果 **/
-    var title = shareTxt; //定义分享，等待 
-    var url = encodeURIComponent(shareUrl); //页面链接 
+    var title = shareTxt; //定义分享，等待
+    var url = encodeURIComponent(shareUrl); //页面链接
     var img = shareImgSrc; //分享的图片路径
     var fxHref = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+url+'&title='+title +'&desc=&summary=&site=&pics='+img
-    window.open(fxHref); 
+    window.open(fxHref);
 
 
 15、获取选中的文字
@@ -601,7 +601,7 @@ permalink: javascript-fn
 16、jQuery 扩展 tween 算法
 
     $.extend(jQuery.easing , {
-        
+
         easeIn: function(x,t, b, c, d){  //加速曲线
             return c*(t/=d)*t + b;
         },
@@ -627,17 +627,17 @@ permalink: javascript-fn
             return -c/2 * ((t-=2)*t*t*t - 2) + b;
         },
         elasticIn: function(x,t, b, c, d, a, p){  //正弦衰减曲线（弹动渐入）
-            if (t === 0) { 
-                return b; 
+            if (t === 0) {
+                return b;
             }
             if ( (t /= d) == 1 ) {
-                return b+c; 
+                return b+c;
             }
             if (!p) {
-                p=d*0.3; 
+                p=d*0.3;
             }
             if (!a || a < Math.abs(c)) {
-                a = c; 
+                a = c;
                 var s = p/4;
             } else {
                 var s = p/(2*Math.PI) * Math.asin (c/a);
@@ -673,17 +673,17 @@ permalink: javascript-fn
                 p = d*(0.3*1.5);
             }
             if ( !a || a < Math.abs(c) ) {
-                a = c; 
+                a = c;
                 var s = p/4;
             }
             else {
                 var s = p/(2*Math.PI) * Math.asin (c/a);
             }
             if (t < 1) {
-                return - 0.5*(a*Math.pow(2,10*(t-=1)) * 
+                return - 0.5*(a*Math.pow(2,10*(t-=1)) *
                         Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
             }
-            return a*Math.pow(2,-10*(t-=1)) * 
+            return a*Math.pow(2,-10*(t-=1)) *
                     Math.sin( (t*d-s)*(2*Math.PI)/p )*0.5 + c + b;
         },
         backIn: function(x,t, b, c, d, s){     //回退加速（回退渐入）
@@ -697,10 +697,10 @@ permalink: javascript-fn
                 s = 3.70158;  //回缩的距离
             }
             return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
-        }, 
+        },
         backBoth: function(x,t, b, c, d, s){
             if (typeof s == 'undefined') {
-                s = 1.70158; 
+                s = 1.70158;
             }
             if ((t /= d/2 ) < 1) {
                 return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
@@ -726,19 +726,19 @@ permalink: javascript-fn
             }
             return this['bounceOut'](x,t*2-d, 0, c, d) * 0.5 + c*0.5 + b;
         }
-        
+
     });
 
 
 17、javascript原生扩展tween
 
     function startMove(obj,json,times,fx,fn){
-        
+
         if( typeof times == 'undefined' ){
             times = 400;
             fx = 'linear';
         }
-        
+
         if( typeof times == 'string' ){
             if(typeof fx == 'function'){
                 fn = fx;
@@ -760,35 +760,35 @@ permalink: javascript-fn
                 fx = 'linear';
             }
         }
-        
+
         var iCur = {};
-        
+
         for(var attr in json){
             iCur[attr] = 0;
-            
+
             if( attr == 'opacity' ){
                 iCur[attr] = Math.round(getStyle(obj,attr)*100);
             }
             else{
                 iCur[attr] = parseInt(getStyle(obj,attr));
             }
-            
+
         }
-        
+
         var startTime = now();
-        
+
         clearInterval(obj.timer);
-        
+
         obj.timer = setInterval(function(){
-            
+
             var changeTime = now();
-            
+
             var t = times - Math.max(0,startTime - changeTime + times);  //0到2000
-            
+
             for(var attr in json){
-                
+
                 var value = Tween[fx](t,iCur[attr],json[attr]-iCur[attr],times);
-                
+
                 if(attr == 'opacity'){
                     obj.style.opacity = value/100;
                     obj.style.filter = 'alpha(opacity='+value+')';
@@ -796,18 +796,18 @@ permalink: javascript-fn
                 else{
                     obj.style[attr] = value + 'px';
                 }
-                
+
             }
-            
+
             if(t == times){
                 clearInterval(obj.timer);
                 if(fn){
                     fn.call(obj);
                 }
             }
-            
+
         },13);
-        
+
         function getStyle(obj,attr){
             if(obj.currentStyle){
                 return obj.currentStyle[attr];
@@ -816,11 +816,11 @@ permalink: javascript-fn
                 return getComputedStyle(obj,false)[attr];
             }
         }
-        
+
         function now(){
             return (new Date()).getTime();
         }
-        
+
     }
     var Tween = {
         linear: function (t, b, c, d){  //匀速
@@ -851,17 +851,17 @@ permalink: javascript-fn
             return -c/2 * ((t-=2)*t*t*t - 2) + b;
         },
         elasticIn: function(t, b, c, d, a, p){  //正弦衰减曲线（弹动渐入）
-            if (t === 0) { 
-                return b; 
+            if (t === 0) {
+                return b;
             }
             if ( (t /= d) == 1 ) {
-                return b+c; 
+                return b+c;
             }
             if (!p) {
-                p=d*0.3; 
+                p=d*0.3;
             }
             if (!a || a < Math.abs(c)) {
-                a = c; 
+                a = c;
                 var s = p/4;
             } else {
                 var s = p/(2*Math.PI) * Math.asin (c/a);
@@ -897,17 +897,17 @@ permalink: javascript-fn
                 p = d*(0.3*1.5);
             }
             if ( !a || a < Math.abs(c) ) {
-                a = c; 
+                a = c;
                 var s = p/4;
             }
             else {
                 var s = p/(2*Math.PI) * Math.asin (c/a);
             }
             if (t < 1) {
-                return - 0.5*(a*Math.pow(2,10*(t-=1)) * 
+                return - 0.5*(a*Math.pow(2,10*(t-=1)) *
                         Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
             }
-            return a*Math.pow(2,-10*(t-=1)) * 
+            return a*Math.pow(2,-10*(t-=1)) *
                     Math.sin( (t*d-s)*(2*Math.PI)/p )*0.5 + c + b;
         },
         backIn: function(t, b, c, d, s){     //回退加速（回退渐入）
@@ -921,10 +921,10 @@ permalink: javascript-fn
                 s = 3.70158;  //回缩的距离
             }
             return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
-        }, 
+        },
         backBoth: function(t, b, c, d, s){
             if (typeof s == 'undefined') {
-                s = 1.70158; 
+                s = 1.70158;
             }
             if ((t /= d/2 ) < 1) {
                 return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
@@ -985,7 +985,7 @@ permalink: javascript-fn
     }
     //调用示例
     var myURL = parseURL('http://abc.com:8080/dir/index.html?id=255&m=hello#top');
-     
+
     myURL.file;     // = 'index.html'
     myURL.hash;     // = 'top'
     myURL.host;     // = 'abc.com'
@@ -1018,7 +1018,7 @@ permalink: javascript-fn
         var warning="确认退出?";             
         return warning;     
     }     
-         
+
     function onunload_handler(){     
         var warning="谢谢光临";     
         alert(warning);     
@@ -1076,6 +1076,12 @@ permalink: javascript-fn
     }
 
 
+20、监听浏览回退
 
 
-
+    var tit = document.title, path = location.href;
+    history.pushState({exit:true}, tit, path);
+    window.addEventListener('popstate',function(ev){
+        alert('aa');
+        history.pushState({exit:true}, tit, path);
+    });
