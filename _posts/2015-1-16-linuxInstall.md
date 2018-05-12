@@ -11,7 +11,7 @@ permalink: linuxInstall
 
 整理下在linux虚拟机中安装一些常用服务和工具的一些命令，方便以后的安装和使用。
 
-####nginx相关服务的安装
+#### nginx相关服务的安装
 
  1. 执行： sudo apt-get install nginx php5-fpm
  2. 然后编辑配置文件，找到相应的文件(root权限) vim  /etc/nginx/site-available/default，找到location ~ .php$的地方，5行取消注释，变成这样：
@@ -40,6 +40,15 @@ permalink: linuxInstall
  3. root下执行 service nginx restart，nginx安装成功
  4. 安装mysql，执行 sudo apt-get install mysql-server，安装后，重启service service mysql start
 
+
+
+**nginx 403 问题**
+
+1. user 权限问题
+2. 防火墙 selinux
+
+
+
 PHP服务的相关配置扩展：
 
 - default文件中，找到 **index index.html index.htm**  这行，添加index.php,这就可以用php文件做默认主页
@@ -54,7 +63,7 @@ PHP服务的相关配置扩展：
  4. node -v
  5. sudo apt-get install npm  //如果没有npm命令安装npm
 
-####openSSH和openFtp
+#### openSSH和openFtp
 
  1. sudo apt-get install openssh-server   //openssh
  2. sudo apt-get install vsftpd         //openFtp
@@ -64,7 +73,7 @@ PHP服务的相关配置扩展：
      - 解开注释 ftp_banner=welcome to blah FTP service
  4. root下执行 service vsftpd restart  
 
-####安装ruby和依赖ruby的sass
+#### 安装ruby和依赖ruby的sass
 
  1. sudo apt-get update
  2. sudo apt-get install curl
@@ -72,7 +81,7 @@ PHP服务的相关配置扩展：
  4. ruby -v
  5. gem install sass
 
-####安装mongoDB
+#### 安装mongoDB
 
  1. sudo apt-key adv \--keyserver hkp://keyserver.ubuntu.com:80 \--recv 7F0CEB10
  2. echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' \| sudo tee /etc/apt/sources.list.d/mongodb.list
@@ -83,7 +92,7 @@ PHP服务的相关配置扩展：
 
     
 
-####安装 oh my zsh
+#### 安装 oh my zsh
 
 1. sudo apt-get update
 2. sudo apt-get install zsh
