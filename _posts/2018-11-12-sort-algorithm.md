@@ -28,7 +28,7 @@ permalink: sort-algorithm
 
 
 
-### 插入排序
+#### 插入排序
 
 
     $len=count($arr);
@@ -57,7 +57,7 @@ permalink: sort-algorithm
 
 
 
-### 二分法查找法
+#### 二分法查找法
 
 
     function bin_search($arr,$key){
