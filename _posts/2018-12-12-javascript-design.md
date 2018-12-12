@@ -134,11 +134,11 @@ es7装饰器示例(需配置 babel plugins: babel-plugin-transform-decorators-le
         constructor(name){
             this.name = name;
         }
-        \@readonly
+        @readonly
         getname(){
             console.log(this.name);
         }
-        \@deprecate
+        @deprecate
         facepalm() {}
     }
 
