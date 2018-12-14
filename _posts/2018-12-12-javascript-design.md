@@ -286,3 +286,97 @@ es6 proxy 示例
     });
     myevent.emit('aa');
     myevent.emit('bb');
+
+
+
+## 迭代器模式(顺序访问一个有序集合)
+
+示例
+
+    class Iterator {
+        constructor(container){
+            this.list = container.list;
+            this.index = 0;
+        }
+        next(){
+            if(this.hasNext()){
+                return this.list[this.index++];
+            }
+            return null;
+        }
+        hasNext(){
+            if(this.index >= this.list.length){
+                return false
+            }
+            return true;
+        }
+    }
+    class Container{
+        constructor(list){
+            this.list = list;
+        }
+        getIterator(){
+            return new Iterator(this);
+        }
+    }
+
+    var container = new Container([1,2,3]);
+    var iterator = container.getIterator()
+
+    while(iterator.hasNext()){
+        console.log(iterator.next());
+    }
+
+
+示例 es6 Iterator(简化版 使用 for ... of )
+
+
+    function each(data){
+        let iterator = data[Symbol.iterator]();
+
+        let item = {done: false}
+        while(!item.done){
+            item = iterator.next();
+            if(!item.done){
+                console.log(item.value);
+            }
+        }
+    }
+    each(new Set([1,2,3]));
+
+
+
+## 状态模式
+
+    class TrafficLight{
+        constructor(){
+            this.state = null
+        }
+        getState(){
+            return this.state;
+        }
+        setState(state){
+            this.state = state;
+        }
+    }
+    class LightState {
+        constructor(color){
+            this.color = color;
+        }
+        handler(context){
+            console.log(`turn to ${this.color} light`);
+            context.setState(this);
+        }
+    }
+
+    var trafficligt = new TrafficLight();
+
+    var red = new LightState('red');
+    red.handler(trafficligt);
+    console.log(trafficligt.getState());
+    var green = new LightState('green');
+    green.handler(trafficligt);
+    console.log(trafficligt.getState());
+    var yellow = new LightState('yellow');
+    yellow.handler(trafficligt);
+    console.log(trafficligt.getState());
