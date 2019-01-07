@@ -1085,3 +1085,14 @@ permalink: javascript-fn
         alert('aa');
         history.pushState({exit:true}, tit, path);
     });
+
+
+21、深拷贝
+
+    function deepCopy(obj){
+        let temp = obj instanceof Array ? []: {};
+        for(var key in obj){
+            temp[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key];
+        }
+        return temp;
+    }
