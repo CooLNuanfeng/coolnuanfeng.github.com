@@ -530,3 +530,5 @@ es6 proxy 示例
 
 
 ## bind 实现 instanceof 原理
+
+## Object.create 和 new
