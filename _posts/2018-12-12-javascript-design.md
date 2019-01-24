@@ -380,3 +380,153 @@ es6 proxy 示例
     var yellow = new LightState('yellow');
     yellow.handler(trafficligt);
     console.log(trafficligt.getState());
+
+
+
+## Promise 简单实现
+
+    function Promise(fn){
+        var that = this;
+        this.state = 'pendding';
+        this.value = '';
+        this.resolveCallbacks = [];
+        this.rejectCallbacks = [];
+
+        this.then = function(onResolve, onReject){
+            if(this.state == 'pending'){
+                this.resolveCallbacks.push(onResolve);
+                this.rejectCallbacks.push(onReject);
+            }
+            if(this.state == 'resolve'){
+                onResolve(this.value);
+            }
+            if(this.state == 'reject'){
+                onReject(this.value);
+            }
+        }
+
+        function resolve(value){
+            if(this.state === 'pending'){
+                this.state === 'reslove';
+                this.value = value;
+                setTimeout(function(){
+                    that.resolveCallbacks.forEach(fn=>fn(that.value))
+                },0);
+            }
+
+        }
+        function reject(value){
+            if(this.state === 'pending'){
+                this.state === 'reject';
+                this.value = value;
+                setTimeout(function(){
+                    that.rejectCallbacks.forEach(fn=>fn(that.value))
+                },0);
+            }
+        }
+
+        try{
+            fn(resolve,reject);
+        }catch(e){
+            reject(e);
+        }
+    }
+
+
+## 队列实现
+
+    var a = function(data){
+        return new Promise(function(resolve,reject){
+            setTimeout(function(){
+                console.log('a',data);
+                resolve('a');
+            },1000);
+        });
+    }
+    var b = function(data){
+        return new Promise(function(resolve,reject){
+            setTimeout(function(){
+                console.log('b',data);
+                resolve('b');
+            },1000);
+        });
+    }
+    var c = function(data){
+        return new Promise(function(resolve,reject){
+            setTimeout(function(){
+                console.log('c',data);
+                resolve('c');
+            },1000);
+        });
+    }
+    var arr = [a,b,c]
+    function Queue(arr){
+        var sequeue = Promise.resolve();
+        arr.forEach(function(item){
+            sequeue = sequeue.then(item);
+        });
+        return sequeue;
+    }
+
+    Queue(arr).then(data=>{
+        console.log(data);
+    });
+
+
+
+## 深拷贝
+
+    function deepCopy(obj){
+        let temp = obj instanceof Array ? []: {};
+        for(var key in obj){
+            temp[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key];
+        }
+        return temp;
+    }
+
+
+
+## 函数防抖
+
+    function debounce(fn,wait){
+        var timeout = null;
+        return function(){
+            clearTimeout(timeout);
+            timeout = setTimeout(function(){
+                fn.apply(this,arguments);
+            },wait);
+        }
+    }
+
+## 函数节流
+
+    function throttle(fn,interval){
+        let canRun = true;
+        interval = interval ? interval : 3000;
+        return function(){
+            if(!canRun) return;
+            canRun = false;
+            setTimeout(function(){
+                fn.apply(this,arguments);
+                canRun = true;
+            },interval);
+        }
+    }
+
+
+## call apply 实现
+
+    Function.prototype.call = function(context){
+        if(typeof this !== 'function'){
+            throw Error();
+        }
+        context = context || window;
+        context.fn = this;
+        var arg = arguments.splice(1);
+        var result = context.fn(..arg);
+        delete context.fn;
+        return result;
+    }
+
+
+## bind 实现 instanceof 原理
